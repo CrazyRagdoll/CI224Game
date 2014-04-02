@@ -1,7 +1,5 @@
 #include "Player.h"
 
-int live = 0;
-
 Player::Player() 
   : GameAsset(
 	      string("shaders/hello-gl.v.glsl")

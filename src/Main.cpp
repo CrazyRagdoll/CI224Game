@@ -10,7 +10,6 @@
 #include "GameAsset.h"
 #include "Md2Asset.h"
 #include "TriangularPyramidAsset.h"
-#include "CubeAsset.h"
 #include "Player.h"
 #include "BallisticInterpolator.h"
 #include "Camera.h"
@@ -52,13 +51,13 @@ void display() {
     if(horrible_global_go) {it->update();}
   }
 
-  for(auto i : assets) {
+/*  for(auto i : assets) {
     for(auto j : assets) {
       if((i != j) && i->collidesWith(*j)) {
 	cout << "We have a collision"  << endl;
       }
     }
-  } 
+  } */ 
 
   for(auto it : assets) {
     it->draw();
@@ -111,7 +110,9 @@ int main(int argc, char ** argv) {
 	p->setInterpolator(i);
 	assets.push_back(p);
 
-		
+	//Adding the player to the game
+	assets.push_back(shared_ptr<Player> (new Player(0, 0, 0)));		
+
 /*	//creating a 3 by 3 group of cubes
 	for( int x = -1; x < 2; x++ )
 	{
@@ -125,10 +126,10 @@ int main(int argc, char ** argv) {
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
 
 	// Set the camera
-	//Camera::getInstance().lookAt(Point3(0.0, 0.0, -10.0), Point3(0.0, 0.0, -1.0), Vector3(0.0, 1.0, 0.0));
-	//  Camera::getInstance().setCamera(Camera::getInstance().getCameraM() * Matrix4::translation(Vector3(-10.0, 0.0, 20.0)));
-	//	display();
-	//	Camera::getInstance().setCamera(Matrix4::identity());
+	Camera::getInstance().lookAt(Point3(0.0, 0.0, -10.0), Point3(0.0, 0.0, -1.0), Vector3(0.0, 1.0, 0.0));
+	  Camera::getInstance().setCamera(Camera::getInstance().getCameraM() * Matrix4::translation(Vector3(-10.0, 0.0, 20.0)));
+		display();
+		Camera::getInstance().setCamera(Matrix4::identity());
 
 	// Call the function "display" every delay milliseconds
 	SDL_AddTimer(delay, display, NULL);
