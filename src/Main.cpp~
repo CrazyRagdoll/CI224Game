@@ -10,7 +10,7 @@
 #include "GameAsset.h"
 #include "Md2Asset.h"
 #include "TriangularPyramidAsset.h"
-#include "FloorAsset.h"
+#include "CubeAsset.h"
 #include "BallisticInterpolator.h"
 #include "Camera.h"
 
@@ -111,7 +111,7 @@ int main(int argc, char ** argv) {
 	assets.push_back(p);
 
 		
-	creating a 3 by 3 group of cubes
+	//creating a 3 by 3 group of cubes
 	for( int x = -1; x < 2; x++ )
 	{
 		for( int z = -1; z < 2; z++ )
@@ -120,15 +120,6 @@ int main(int argc, char ** argv) {
 		};
 
 	}; 
-
-	//creating a "floor" which will ignore the magicY value 
-	for( int z = -5; z <= 5; z++ )
-	{
-		for( int x = -5; x <= 5; x++ )
-		{
-			assets.push_back(shared_ptr<FloorAsset> (new FloorAsset(x, -2, z)));
-		};
-	};
 
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
 

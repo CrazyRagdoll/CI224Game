@@ -93,7 +93,7 @@ PROGRAMS = $(bin_PROGRAMS)
 am_simplegame_OBJECTS = Main.$(OBJEXT) GameAsset.$(OBJEXT) \
 	Md2Asset.$(OBJEXT) TriangularPyramidAsset.$(OBJEXT) \
 	BallisticInterpolator.$(OBJEXT) Camera.$(OBJEXT) \
-	BoundingBox.$(OBJEXT) CubeAsset.$(OBJEXT) FloorAsset.$(OBJEXT)
+	BoundingBox.$(OBJEXT) CubeAsset.$(OBJEXT)
 simplegame_OBJECTS = $(am_simplegame_OBJECTS)
 simplegame_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
@@ -152,12 +152,12 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sam/Game/missing aclocal-1.13
+ACLOCAL = ${SHELL} /home/sam/CI224Game/missing aclocal-1.13
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/sam/Game/missing autoconf
-AUTOHEADER = ${SHELL} /home/sam/Game/missing autoheader
-AUTOMAKE = ${SHELL} /home/sam/Game/missing automake-1.13
+AUTOCONF = ${SHELL} /home/sam/CI224Game/missing autoconf
+AUTOHEADER = ${SHELL} /home/sam/CI224Game/missing autoheader
+AUTOMAKE = ${SHELL} /home/sam/CI224Game/missing automake-1.13
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -185,7 +185,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS =  $(gl_LIBS) $(glew_LIBS) $(sdl2_LIBS)
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sam/Game/missing makeinfo
+MAKEINFO = ${SHELL} /home/sam/CI224Game/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = simplegame
@@ -203,10 +203,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = 
 VERSION = 0.1
-abs_builddir = /home/sam/Game/src
-abs_srcdir = /home/sam/Game/src
-abs_top_builddir = /home/sam/Game
-abs_top_srcdir = /home/sam/Game
+abs_builddir = /home/sam/CI224Game/src
+abs_srcdir = /home/sam/CI224Game/src
+abs_top_builddir = /home/sam/CI224Game
+abs_top_srcdir = /home/sam/CI224Game
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -230,7 +230,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/sam/Game/install-sh
+install_sh = ${SHELL} /home/sam/CI224Game/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -252,7 +252,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-simplegame_SOURCES = Main.cpp GameAsset.cpp Md2Asset.cpp TriangularPyramidAsset.cpp BallisticInterpolator.cpp Camera.cpp BoundingBox.cpp CubeAsset.cpp FloorAsset.cpp
+simplegame_SOURCES = Main.cpp GameAsset.cpp Md2Asset.cpp TriangularPyramidAsset.cpp BallisticInterpolator.cpp Camera.cpp BoundingBox.cpp CubeAsset.cpp
 AM_CPPFLAGS = -I../include/ -std=c++0x $(gl_CFLAGS) $(glew_CFLAGS) \
 	$(sdl_CFLAGS)
 all: all-am
@@ -346,7 +346,6 @@ include ./$(DEPDIR)/BallisticInterpolator.Po
 include ./$(DEPDIR)/BoundingBox.Po
 include ./$(DEPDIR)/Camera.Po
 include ./$(DEPDIR)/CubeAsset.Po
-include ./$(DEPDIR)/FloorAsset.Po
 include ./$(DEPDIR)/GameAsset.Po
 include ./$(DEPDIR)/Main.Po
 include ./$(DEPDIR)/Md2Asset.Po
