@@ -105,12 +105,10 @@ int main(int argc, char ** argv) {
 	  return 1;
 	}
 
-	/*
 	shared_ptr<TriangularPyramidAsset> p = shared_ptr<TriangularPyramidAsset> (new TriangularPyramidAsset(0, 0, 0));	
-	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(7.0, 7.0, 0), 60));
+	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 7.0, 0), 60));
 	p->setInterpolator(i);
 	assets.push_back(p);
-	*/
 
 	//Adding the player to the game
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
@@ -161,22 +159,9 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_LEFT:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
-			    
 			    break;
 			  case SDLK_RIGHT:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
-			    break;
-			  case SDLK_w:
-			    Camera::getInstance().setCamera(camera * Matrix4::rotationX(5.0/180.0));
-			    break;
-			  case SDLK_s:
-			    Camera::getInstance().setCamera(camera * Matrix4::rotationX(-5.0/180.0));
-			    break;
-			  case SDLK_a:
-			    Camera::getInstance().setCamera(camera * Matrix4::rotationY(5.0/180.0));
-			    break;
-			  case SDLK_d:
-			    Camera::getInstance().setCamera(camera * Matrix4::rotationY(-5.0/180.0));
 			    break;
 			  case SDLK_g:
 			    horrible_global_go = true;
