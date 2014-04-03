@@ -51,13 +51,13 @@ void display() {
     if(horrible_global_go) {it->update();}
   }
 
-  for(auto i : assets) {
+/*  for(auto i : assets) {
     for(auto j : assets) {
       if((i != j) && i->collidesWith(*j)) {
 	cout << "We have a collision"  << endl;
       }
     }
-  } 
+  } */
 
   for(auto it : assets) {
     it->draw();
@@ -130,6 +130,7 @@ int main(int argc, char ** argv) {
 
 	// Set the camera
 	//Camera::getInstance().lookAt(Point3(0.0, 0.0, 10.0), Point3(0.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0));
+	Camera::getInstance().setCamera(Camera::getInstance().lookAt(Point3(0.0, 0.0, 10.0), Point3(0.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0)));
 	// Camera::getInstance().setCamera(Camera::getInstance().getCameraM() * Matrix4::translation(Vector3(-10.0, 0.0, 20.0)));
 	//	display();
 		Camera::getInstance().setCamera(Matrix4::identity());
