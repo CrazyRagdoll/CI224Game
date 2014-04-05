@@ -49,7 +49,7 @@ void display() {
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
   for(auto it : assets) {
-    if(horrible_global_go) {it->update();}
+    /*if(horrible_global_go) */{it->update();}
   }
 
 /*  for(auto i : assets) {
@@ -113,8 +113,6 @@ int main(int argc, char ** argv) {
 
 	//Adding the player to the game
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
-	//shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(0.0, -1.0, 0), 60));
-	//play->setInterpolator(mLeft);
 	assets.push_back(play);		
 
 /*	//creating a 3 by 3 group of cubes
@@ -162,13 +160,15 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_LEFT:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
-			    
+			/*    shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(-1.0, 0.0, 0), 60));
+			    play->setInterpolator(mLeft);
+			    assets.push_back(play);	 */
 			    break;
 			  case SDLK_RIGHT:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
 			    break;
 			  case SDLK_g:
-			    horrible_global_go = true;
+			    //horrible_global_go = true;
 			  default:
 			    break;
 			  }
