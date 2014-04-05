@@ -12,6 +12,7 @@
 #include "TriangularPyramidAsset.h"
 #include "Player.h"
 #include "BallisticInterpolator.h"
+#include "MovementInterpolator.h"
 #include "Camera.h"
 
 using namespace std;
@@ -106,12 +107,14 @@ int main(int argc, char ** argv) {
 	}
 
 	shared_ptr<TriangularPyramidAsset> p = shared_ptr<TriangularPyramidAsset> (new TriangularPyramidAsset(0, 0, 0));	
-	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 7.0, 0), 60));
+	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 10.0, 0), 60));
 	p->setInterpolator(i);
 	assets.push_back(p);
 
 	//Adding the player to the game
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
+	//shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(0.0, -1.0, 0), 60));
+	//play->setInterpolator(mLeft);
 	assets.push_back(play);		
 
 /*	//creating a 3 by 3 group of cubes
@@ -151,14 +154,15 @@ int main(int argc, char ** argv) {
 			case SDL_KEYDOWN:
 			  Matrix4 camera = Camera::getInstance().getCameraM();
 			  switch(event.key.keysym.sym){
-			  case SDLK_UP:
+			/*case SDLK_UP:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 1.0, 0.0)) );
 			    break;
 			  case SDLK_DOWN:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, -1.0, 0.0)) );
+			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, -1.0, 0.0)) ); */
 			    break;
 			  case SDLK_LEFT:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
+			    
 			    break;
 			  case SDLK_RIGHT:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
