@@ -159,13 +159,20 @@ int main(int argc, char ** argv) {
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, -1.0, 0.0)) ); */
 			    break;
 			  case SDLK_LEFT:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
-			/*    shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(-1.0, 0.0, 0), 60));
+			{
+			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
+			    shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(-1.0, 0.0, 0), 60));
 			    play->setInterpolator(mLeft);
-			    assets.push_back(play);	 */
+			    assets.push_back(play);
+			}		 
 			    break;
 			  case SDLK_RIGHT:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
+			{
+			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
+			    shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(1.0, 0.0, 0), 60));
+			    play->setInterpolator(mLeft);
+			    assets.push_back(play);
+			}	
 			    break;
 			  case SDLK_g:
 			    //horrible_global_go = true;
