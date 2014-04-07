@@ -1,5 +1,4 @@
 #define GLEW_STATIC // Easier debugging
-#include <vectormath/scalar/cpp/vectormath_aos.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
@@ -116,20 +115,15 @@ int main(int argc, char ** argv) {
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
 	assets.push_back(play);	
 
-	//Using my MovementInterpolator to move left
-	/*shared_ptr<IInterpolator> mLeft = shared_ptr<IInterpolator>(new MovementInterpolator(Vector3(-1.0, 0.0, 0), 60));
-	play->setInterpolator(mLeft);
-	assets.push_back(play);	*/
-
-/*	//creating a 3 by 3 group of cubes
-	for( int x = -1; x < 2; x++ )
+	//creating a 3 by 3 group of cubes
+/*	for( int x = -1; x < 2; x++ )
 	{
-		for( int z = -1; z < 2; z++ )
+		for( int y = -1; y < 2; y++ )
 		{
-			assets.push_back(shared_ptr<CubeAsset> (new CubeAsset(x, 0, z)));
+			assets.push_back(shared_ptr<CubeAsset> (new CubeAsset(x, y, 5)));
 		};
 
-	}; */ 
+	};  */
 
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
 
@@ -166,12 +160,14 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_LEFT:
 			{
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
+				//Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) ); 
+
+				assets.push_back(play);
 			}		 
 			    break;
 			  case SDLK_RIGHT:
 			{
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
+			    //Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
 			}	
 			    break;
 			  case SDLK_g:
