@@ -107,17 +107,17 @@ int main(int argc, char ** argv) {
 	  return 1;
 	}
 
-	shared_ptr<TriangularPyramidAsset> p = shared_ptr<TriangularPyramidAsset> (new TriangularPyramidAsset(0, 0, 0));	
+	/*shared_ptr<TriangularPyramidAsset> p = shared_ptr<TriangularPyramidAsset> (new TriangularPyramidAsset(0, 0, 0));	
 	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 10.0, 0), 60));
 	p->setInterpolator(i);
-	assets.push_back(p);
+	assets.push_back(p); */
 
 	//Adding the player to the game
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
 	assets.push_back(play);	
 	
 	//Creating an enemy in the world
-	shared_ptr<Enemy> enm1 = shared_ptr<Enemy> (new Enemy(0, 0, 5));
+	shared_ptr<Enemy> enm1 = shared_ptr<Enemy> (new Enemy(0, 0, 10));
 	assets.push_back(enm1);
 	
 	//creating a 3 by 3 group of cubes
@@ -159,9 +159,9 @@ int main(int argc, char ** argv) {
 			  switch(event.key.keysym.sym){
 			/*case SDLK_UP:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 1.0, 0.0)) );
-			    break;
+			    break; */
 			  case SDLK_DOWN:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, -1.0, 0.0)) ); */
+			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, 5.0))); 
 			    break;
 			  case SDLK_LEFT:
 			{

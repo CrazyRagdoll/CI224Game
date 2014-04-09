@@ -56,20 +56,13 @@ Player::Player(float x, float y, float z) {
   make_resources();
 }
 
-Player::moveLeft()
-{
-
-  shared_ptr<Point3> l = shared_ptr<Point3>(new Point3(-1.0, 0.0, 0.0));
-  return l;
-
-}
-
 Player::~Player() {
   // TODO: do something nice and fun here.
 }
 
 void Player::update() {
-  if (nullptr != li) {
+  if (isAlive = true) 
+  {
     //    std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
     shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->li->update()));
 

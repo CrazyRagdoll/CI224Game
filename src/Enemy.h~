@@ -12,8 +12,9 @@ class Enemy : public GameAsset {
 
   virtual void update();
   virtual void draw();
-  virtual bool dead(){ isAlive = false; return isAlive;};
   void setInterpolator(shared_ptr<IInterpolator> li);
+  virtual bool dead(){ isAlive = false; return isAlive;};
+  bool isAlive = true;
 
   enum vertices {
 	F0, F1, F2, F3, B4, B5, B6, B7,
@@ -21,7 +22,6 @@ class Enemy : public GameAsset {
  
   private:
   shared_ptr<IInterpolator> li;
-  bool isAlive = true;
 
 };
 

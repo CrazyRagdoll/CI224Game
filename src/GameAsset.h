@@ -32,7 +32,8 @@ public:
 
 	virtual void draw();
 	virtual void update()=0;
- 	virtual bool dead(){ isAlive = false; return isAlive;};
+ 	virtual bool dead(){ isAlive = false; };
+	virtual bool isItAlive(){ return isAlive; };
 
 	shared_ptr<BoundingBox> bbox;
  	bool isAlive = true;
