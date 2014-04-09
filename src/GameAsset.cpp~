@@ -27,9 +27,7 @@ GameAsset::~GameAsset() {
 	// TODO Auto-generated destructor stub
 }
 
-bool GameAsset::collidesWith(GameAsset & a ) {
-  return bbox->collidesWith((*a.bbox));
-}
+//GameAsset::getBBox(){ return bbox; }
 
 void GameAsset::draw() {
   glUseProgram(program);

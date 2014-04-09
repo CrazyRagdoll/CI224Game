@@ -8,7 +8,7 @@ class Player : public GameAsset {
  public:
   Player();
   Player(float x, float y, float z);
-    ~Player();
+    ~Player();;
 
   virtual void update();
   virtual void draw();

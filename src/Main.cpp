@@ -113,8 +113,9 @@ int main(int argc, char ** argv) {
 
 	//Adding the player to the game
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
+       // bbox2 = shared_ptr<BoundingBox>(new BoundingBox((mLeft + Point3(1, 0, 0)), 1.0, 1.0, 1.0));
 	assets.push_back(play);	
-
+	
 	//creating a 3 by 3 group of cubes
 /*	for( int x = -1; x < 2; x++ )
 	{
@@ -161,13 +162,17 @@ int main(int argc, char ** argv) {
 			  case SDLK_LEFT:
 			{
 				//Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) ); 
-
+				shared_ptr<Point3> mLeft = play->bbox->getCentre();
+				*mLeft = Point3((mLeft->getX() - 1.0), 0.0, 0.0);
 				assets.push_back(play);
 			}		 
 			    break;
 			  case SDLK_RIGHT:
 			{
 			    //Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) );
+				shared_ptr<Point3> mRight = play->bbox->getCentre();
+				*mRight = Point3(mRight->getX() + 1.0, 0.0, 0.0);
+				assets.push_back(play);
 			}	
 			    break;
 			  case SDLK_g:
