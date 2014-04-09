@@ -61,13 +61,10 @@ Player::~Player() {
 }
 
 void Player::update() {
-  if (nullptr != li) {
-    //    std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
-    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->li->update()));
-
-    bbox.reset();
-    bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
+  if (isAlive = true) {
+	
   }
+  else{ cout << "Game Over Noob" << endl;}
 }
 
 void Player::setInterpolator(shared_ptr<IInterpolator> li) {

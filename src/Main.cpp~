@@ -55,7 +55,7 @@ void display() {
 
   for(auto i : assets) {
     for(auto j : assets) {
-      if((i != j) && i->collidesWith(*j)) {
+      if((i = play) && (j = enm1) && i->collidesWith(*j)) {
 	cout << "We have a collision"  << endl;
       }
     }
