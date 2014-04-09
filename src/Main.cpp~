@@ -22,6 +22,7 @@ using namespace std;
 
 string filename = "data/ogre.md2";
 vector<shared_ptr<GameAsset> > assets;
+int EnemyCount = 0;
 
 bool horrible_global_go = false;
 
@@ -55,7 +56,7 @@ void display() {
 
   for(auto i : assets) {
     for(auto j : assets) {
-      if((i = play) && (j = enm1) && i->collidesWith(*j)) {
+      if((i != j) && i->collidesWith(*j)) {
 	cout << "We have a collision"  << endl;
       }
     }
@@ -119,7 +120,7 @@ int main(int argc, char ** argv) {
 	//Creating an enemy in the world
 	shared_ptr<Enemy> enm1 = shared_ptr<Enemy> (new Enemy(0, 0, 10));
 	assets.push_back(enm1);
-	
+
 	//creating a 3 by 3 group of cubes
 /*	for( int x = -1; x < 2; x++ )
 	{
@@ -180,7 +181,9 @@ int main(int argc, char ** argv) {
 			}	
 			    break;
 			  case SDLK_g:
-			    //horrible_global_go = true;
+			     Enemy = "Enemy" + EnemyCount++;
+			     shared_ptr<Enemy> string(Enemy) = shared_ptr<Enemy> (new Enemy(0, 0, 10));
+	assets.push_back(enm1);
 			  default:
 			    break;
 			  }

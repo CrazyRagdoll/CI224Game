@@ -63,18 +63,18 @@ Enemy::~Enemy() {
 //Implementing automatically moving enemy objects.
 void Enemy::update() {
 
-  //if (isAlive = true) {
+  if (isAlive = true) {
     shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-0.1));
 
-    //if( this->bbox->getCentre()->getZ() < -2) { this->dead(); }
+    if( this->bbox->getCentre()->getZ() < -5) { this->dead(); }
     bbox.reset();
     bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
 
-    //cout << this->bbox->getCentre()->getZ() << endl;
-    //cout << this->isItAlive() << endl;
+    cout << this->bbox->getCentre()->getZ() << endl;
+    cout << this->isItAlive() << endl;
 
-  //}
-  //else{ delete this; };
+  }
+  else{};
 }
 
 void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {

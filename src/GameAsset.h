@@ -36,7 +36,7 @@ public:
 	virtual bool isItAlive(){ return isAlive; };
 
 	shared_ptr<BoundingBox> bbox;
- 	bool isAlive = true;
+ 	bool isAlive;
 
 protected:
 	/* functions */

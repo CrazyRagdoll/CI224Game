@@ -64,7 +64,9 @@ void Player::update() {
   if (isAlive = true) {
 	
   }
-  else{ cout << "Game Over Noob" << endl;}
+  else{ 
+    cout << "Game Over Noob" << endl;
+  }
 }
 
 void Player::setInterpolator(shared_ptr<IInterpolator> li) {
