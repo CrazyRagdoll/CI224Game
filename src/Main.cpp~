@@ -181,9 +181,7 @@ int main(int argc, char ** argv) {
 			}	
 			    break;
 			  case SDLK_g:
-			     Enemy = "Enemy" + EnemyCount++;
-			     shared_ptr<Enemy> string(Enemy) = shared_ptr<Enemy> (new Enemy(0, 0, 10));
-	assets.push_back(enm1);
+
 			  default:
 			    break;
 			  }
