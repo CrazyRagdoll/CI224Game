@@ -74,7 +74,7 @@ void Enemy::update() {
     cout << isItAlive() << endl;
 
   }
-  else{ delete this; };
+  else{ this->clean();};
 }
 
 void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {
@@ -85,3 +85,5 @@ void Enemy::draw() {
 //  std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
   GameAsset::draw();
 }
+
+void Enemy::clean() { }

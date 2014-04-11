@@ -14,8 +14,6 @@ class Player : public GameAsset {
   virtual void draw();
   void setInterpolator(shared_ptr<IInterpolator> li);
 
-  virtual shared_ptr<Point3> moveLeft();
-
   enum vertices {
 	F0, F1, F2, F3, B4, B5, B6, B7,
   };

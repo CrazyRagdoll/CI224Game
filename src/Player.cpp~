@@ -65,7 +65,7 @@ void Player::update() {
 	
   }
   else{ 
-    cout << "Game Over Noob" << 
+    cout << "Game Over Noob" << endl;
   }
 }
 

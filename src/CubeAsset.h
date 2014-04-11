@@ -12,6 +12,7 @@ class CubeAsset : public GameAsset {
 
   virtual void update();
   virtual void draw();
+  virtual void clean();
   void setInterpolator(shared_ptr<IInterpolator> li);
 
   enum vertices {

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <memory>
+#include <list>
 
 #include "GameAsset.h"
 #include "Md2Asset.h"
@@ -118,8 +119,24 @@ int main(int argc, char ** argv) {
 	assets.push_back(play);	
 	
 	//Creating an enemy in the world
-	shared_ptr<Enemy> enm1 = shared_ptr<Enemy> (new Enemy(0, 0, 10));
-	assets.push_back(enm1);
+	//shared_ptr<Enemy> enm1 = shared_ptr<Enemy> (new Enemy(0, 0, 10));
+	//assets.push_back(enm1);
+
+	//Using lists to create multiple enemies.
+	//for( int n = 0; n < 5; n++)
+	//{
+	//	list<shared_ptr<Enemy>> Enemies ( n, shared_ptr<Enemy> (new Enemy(n,0,10)));
+	//	assets.push_back(Enemies);
+	//}
+	
+	//Using a for loop to create a bunch or randomly generated enemies.
+	for( int n = 10; n <= 50; n++ )
+	{
+		int rnd1 = rand() % 20 - 10;
+		int rnd2 = rand() % 10 - 10;
+		int rnd3 = rand() % 10 + 1;
+		assets.push_back(shared_ptr<Enemy> (new Enemy(random, 0, n)));
+	}
 
 	//creating a 3 by 3 group of cubes
 /*	for( int x = -1; x < 2; x++ )
@@ -168,7 +185,7 @@ int main(int argc, char ** argv) {
 			{
 				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) ); 
 				shared_ptr<Point3> mLeft = play->bbox->getCentre();
-				*mLeft = Point3((mLeft->getX() - 1.0), 0.0, 0.0);
+				*mLeft = Point3(mLeft->getX() - 1.0, 0.0, 0.0);
 				assets.push_back(play);
 			}		 
 			    break;

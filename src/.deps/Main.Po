@@ -159,8 +159,9 @@ Main.o: Main.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/4.8/bits/unique_ptr.h \
  /usr/include/c++/4.8/bits/shared_ptr.h \
  /usr/include/c++/4.8/bits/shared_ptr_base.h \
- /usr/include/c++/4.8/backward/auto_ptr.h GameAsset.h \
- ../include/vectormath/scalar/cpp/vectormath_aos.h \
+ /usr/include/c++/4.8/backward/auto_ptr.h /usr/include/c++/4.8/list \
+ /usr/include/c++/4.8/bits/stl_list.h /usr/include/c++/4.8/bits/list.tcc \
+ GameAsset.h ../include/vectormath/scalar/cpp/vectormath_aos.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
@@ -616,6 +617,12 @@ Main.o: Main.cpp /usr/include/stdc-predef.h \
 /usr/include/c++/4.8/bits/shared_ptr_base.h:
 
 /usr/include/c++/4.8/backward/auto_ptr.h:
+
+/usr/include/c++/4.8/list:
+
+/usr/include/c++/4.8/bits/stl_list.h:
+
+/usr/include/c++/4.8/bits/list.tcc:
 
 GameAsset.h:
 

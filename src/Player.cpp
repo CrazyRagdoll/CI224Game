@@ -77,3 +77,5 @@ void Player::draw() {
 //  std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
   GameAsset::draw();
 }
+
+void Player::clean() { }
