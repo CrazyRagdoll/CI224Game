@@ -1,4 +1,5 @@
 #include "CubeAsset.h"
+#include "Enemy.h"
 #include "IInterpolator.h"
 
 #ifndef PLAYER_H_
@@ -9,6 +10,8 @@ class Player : public GameAsset {
   Player();
   Player(float x, float y, float z);
     ~Player();;
+
+  bool collidesWith(Enemy & a);
 
   virtual void update();
   virtual void draw();

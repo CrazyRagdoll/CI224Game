@@ -32,7 +32,7 @@ public:
 
 	virtual void draw();
 	virtual void update()=0;
-	virtual void clean();
+	virtual void clean()=0;
  	virtual bool dead(){ isAlive = false; };
 	virtual bool isItAlive(){ return isAlive; };
 

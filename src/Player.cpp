@@ -61,12 +61,16 @@ Player::~Player() {
 }
 
 void Player::update() {
-  if (isAlive = true) {
-	
+  if (isAlive) {
   }
   else{ 
     cout << "Game Over Noob" << endl;
+    
   }
+}
+
+bool Player::collidesWith(Enemy & a) {
+  return bbox->collidesWith((*a.bbox));
 }
 
 void Player::setInterpolator(shared_ptr<IInterpolator> li) {

@@ -23,6 +23,9 @@ using namespace std;
 
 string filename = "data/ogre.md2";
 vector<shared_ptr<GameAsset> > assets;
+vector<shared_ptr<Player> > pAssets;
+vector<shared_ptr<Enemy> > eAssets;
+
 int EnemyCount = 0;
 
 bool horrible_global_go = false;
@@ -55,7 +58,7 @@ void display() {
     /*if(horrible_global_go) */{it->update();}
   }
 
- /* for(auto i : assets) {
+ /*for(auto i : assets) {
     for(auto j : assets) {
       if((i != j) && i->collidesWith(*j)) {
 	cout << "We have a collision"  << endl;
@@ -130,6 +133,8 @@ int main(int argc, char ** argv) {
 	//}
 	
 	//Using a for loop to create a bunch or randomly generated enemies.
+	if(play->isAlive)
+	{
 	for( int n = 10; n <= 100; n+= 5 )
 	{
 	    int pos = int(play->bbox->getCentre()->getZ());
@@ -138,17 +143,13 @@ int main(int argc, char ** argv) {
 		int rnd = rand() % 40 - 20;
 		assets.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
 	    }
+	} 
 	}
 
-	//creating a 3 by 3 group of cubes
-/*	for( int x = -1; x < 2; x++ )
-	{
-		for( int y = -1; y < 2; y++ )
-		{
-			assets.push_back(shared_ptr<CubeAsset> (new CubeAsset(x, y, 5)));
-		};
-
-	};  */
+	for(auto e : eAssets) {
+	    if(play->collidesWith(*e)) { 
+		cout << "Player dead" << endl; }
+	}
 
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
 

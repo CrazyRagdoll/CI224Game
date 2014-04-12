@@ -10,6 +10,8 @@ class Enemy : public GameAsset {
   Enemy(float x, float y, float z);
     ~Enemy();;
 
+  //bool collidesWith(Player & a);
+
   virtual void update();
   virtual void draw();
   virtual void clean();

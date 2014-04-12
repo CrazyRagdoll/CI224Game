@@ -65,16 +65,20 @@ void Enemy::update() {
 
   if(isAlive) {
 
-    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-0.1));
+    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-0.2));
 
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
     if( this->bbox->getCentre()->getZ() < -20) { this->dead(); }
-    cout << this->bbox->getCentre()->getZ() << endl;
-    cout << isItAlive() << endl;
+    //cout << this->bbox->getCentre()->getZ() << endl;
+    //cout << isItAlive() << endl;
 
   }
   else{};
+}
+
+bool Enemy::collidesWith(Player & a) {
+  return bbox->collidesWith((*a.bbox));
 }
 
 void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {

@@ -65,7 +65,7 @@ void Enemy::update() {
 
   if(isAlive) {
 
-    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-0.1));
+    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-0.2));
 
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
@@ -76,6 +76,10 @@ void Enemy::update() {
   }
   else{};
 }
+
+//bool Enemy::collidesWith(Player & a) {
+//  return bbox->collidesWith((*a.bbox));
+//}
 
 void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);
