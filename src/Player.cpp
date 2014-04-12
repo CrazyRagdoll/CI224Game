@@ -65,9 +65,8 @@ void Player::update() {
   }
   else{ 
     cout << "You have died." << endl;
-    cout << "Your Score: " score << endl;
-    this->clean(
-    
+    cout << "Your Score: " + score << endl;
+    this->clean();   
   }
 }
 
