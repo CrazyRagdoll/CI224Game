@@ -69,12 +69,12 @@ void Enemy::update() {
 
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
-    if( this->bbox->getCentre()->getZ() < -5) { this->dead(); }
+    if( this->bbox->getCentre()->getZ() < -20) { this->dead(); }
     cout << this->bbox->getCentre()->getZ() << endl;
     cout << isItAlive() << endl;
 
   }
-  else{ this->clean();};
+  else{};
 }
 
 void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {

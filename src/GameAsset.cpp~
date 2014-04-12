@@ -31,6 +31,10 @@ bool GameAsset::collidesWith(GameAsset & a) {
   return bbox->collidesWith((*a.bbox));
 }
 
+void GameAsset::clean(){
+  delete this;
+}
+
 void GameAsset::draw() {
   glUseProgram(program);
 

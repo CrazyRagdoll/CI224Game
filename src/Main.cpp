@@ -55,13 +55,13 @@ void display() {
     /*if(horrible_global_go) */{it->update();}
   }
 
-  for(auto i : assets) {
+ /* for(auto i : assets) {
     for(auto j : assets) {
       if((i != j) && i->collidesWith(*j)) {
 	cout << "We have a collision"  << endl;
       }
     }
-  } 
+  } */
 
   for(auto it : assets) {
     it->draw();
@@ -130,12 +130,14 @@ int main(int argc, char ** argv) {
 	//}
 	
 	//Using a for loop to create a bunch or randomly generated enemies.
-	for( int n = 10; n <= 50; n++ )
+	for( int n = 10; n <= 100; n+= 5 )
 	{
-		int rnd1 = rand() % 20 - 10; int rnd2 = rand() % 10 - 10; int rnd3 = rand() % 10 + 1;
-		assets.push_back(shared_ptr<Enemy> (new Enemy(rnd1, 0, n)));
-		assets.push_back(shared_ptr<Enemy> (new Enemy(rnd2, 0, n)));
-		assets.push_back(shared_ptr<Enemy> (new Enemy(rnd3, 0, n)));
+	    int pos = int(play->bbox->getCentre()->getZ());
+	    for( int n_2 = 0; n_2 <= 5; n_2++ )
+	    {
+		int rnd = rand() % 40 - 20;
+		assets.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
+	    }
 	}
 
 	//creating a 3 by 3 group of cubes
@@ -183,17 +185,17 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_LEFT:
 			{
-				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(1.0, 0.0, 0.0)) ); 
+				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.5, 0.0, 0.0)) ); 
 				shared_ptr<Point3> mLeft = play->bbox->getCentre();
-				*mLeft = Point3(mLeft->getX() - 1.0, 0.0, 0.0);
+				*mLeft = Point3(mLeft->getX() - 0.5, 0.0, 0.0);
 				assets.push_back(play);
 			}		 
 			    break;
 			  case SDLK_RIGHT:
 			{
-			    	Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-1.0, 0.0, 0.0)) );
+			    	Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-0.5, 0.0, 0.0)) );
 				shared_ptr<Point3> mRight = play->bbox->getCentre();
-				*mRight = Point3(mRight->getX() + 1.0, 0.0, 0.0);
+				*mRight = Point3(mRight->getX() + 0.5, 0.0, 0.0);
 				assets.push_back(play);
 			}	
 			    break;
