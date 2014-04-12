@@ -46,7 +46,9 @@ Player::Player(float x, float y, float z) {
 	F3, B7, B6,
 
 	B4, B5, F0,  //bottom
-	B5, F1, F0}; // three vertices per triangle
+	B5, F1, F0
+	
+}; // three vertices per triangle
 
   bbox.reset();
   bbox = shared_ptr<BoundingBox>(new BoundingBox(Point3(x, y, z), 1.0, 1.0, 1.0));
@@ -62,14 +64,16 @@ void Player::update() {
   if (isAlive) {
   }
   else{ 
-    cout << "Game Over Noob" << endl;
+    cout << "You have died." << endl;
+    cout << "Your Score: " score << endl;
+    this->clean(
     
   }
 }
 
-bool Player::collidesWith(Enemy & a) {
-  return bbox->collidesWith((*a.bbox));
-}
+//bool GameAsset::collidesWith(Enemy & a) {
+//  return bbox->collidesWith((*a.bbox));
+//}
 
 void Player::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);

@@ -64,14 +64,16 @@ void Player::update() {
   if (isAlive) {
   }
   else{ 
-    cout << "Game Over Noob" << endl;
+    cout << "You have died." << endl;
+    cout << "Your Score: " score << endl;
+    this->clean(
     
   }
 }
 
-bool Player::collidesWith(Enemy & a) {
-  return bbox->collidesWith((*a.bbox));
-}
+//bool GameAsset::collidesWith(Enemy & a) {
+//  return bbox->collidesWith((*a.bbox));
+//}
 
 void Player::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);

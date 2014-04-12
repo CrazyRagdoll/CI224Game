@@ -77,9 +77,9 @@ void Enemy::update() {
   else{};
 }
 
-bool Enemy::collidesWith(Player & a) {
-  return bbox->collidesWith((*a.bbox));
-}
+//bool Enemy::collidesWith(Player & a) {
+//  return bbox->collidesWith((*a.bbox));
+//}
 
 void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);

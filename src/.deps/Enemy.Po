@@ -136,7 +136,7 @@ Enemy.o: Enemy.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
- IInterpolator.h
+ IInterpolator.h Player.h
 
 /usr/include/stdc-predef.h:
 
@@ -497,3 +497,5 @@ Camera.h:
 BoundingBox.h:
 
 IInterpolator.h:
+
+Player.h:

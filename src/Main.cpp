@@ -22,9 +22,9 @@ using namespace std;
 #define RUN_GRAPHICS_DISPLAY 0x00;
 
 string filename = "data/ogre.md2";
-vector<shared_ptr<GameAsset> > assets;
-vector<shared_ptr<Player> > pAssets;
-vector<shared_ptr<Enemy> > eAssets;
+vector<shared_ptr<GameAsset>> assets;
+vector<shared_ptr<Enemy>> enemies;
+vector<shared_ptr<Player>> player;
 
 int EnemyCount = 0;
 
@@ -54,9 +54,9 @@ void display() {
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
-  for(auto it : assets) {
-    /*if(horrible_global_go) */{it->update();}
-  }
+  for(auto it : assets)  { it->update(); } 
+  for(auto it : enemies) { it->update(); }
+  for(auto it : player)  { it->update(); }
 
  /*for(auto i : assets) {
     for(auto j : assets) {
@@ -66,9 +66,18 @@ void display() {
     }
   } */
 
-  for(auto it : assets) {
-    it->draw();
+  for(auto i : enemies) { 
+    for(auto j : player) {
+      if( i->collidesWith(*j)){
+	j->dead();
+	cout << "Dead" << endl;
+      }
+    }
   }
+
+  for(auto it : assets)  { it->draw(); } 
+  for(auto it : enemies) { it->draw(); }
+  for(auto it : player)  { it->draw(); }
   
   // Don't forget to swap the buffers
   SDL_GL_SwapWindow(window);
@@ -119,11 +128,7 @@ int main(int argc, char ** argv) {
 
 	//Adding the player to the game
 	shared_ptr<Player> play = shared_ptr<Player> (new Player(0, 0, 0));
-	assets.push_back(play);	
-	
-	//Creating an enemy in the world
-	//shared_ptr<Enemy> enm1 = shared_ptr<Enemy> (new Enemy(0, 0, 10));
-	//assets.push_back(enm1);
+	player.push_back(play);	
 
 	//Using lists to create multiple enemies.
 	//for( int n = 0; n < 5; n++)
@@ -141,14 +146,9 @@ int main(int argc, char ** argv) {
 	    for( int n_2 = 0; n_2 <= 5; n_2++ )
 	    {
 		int rnd = rand() % 40 - 20;
-		assets.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
+		enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
 	    }
 	} 
-	}
-
-	for(auto e : eAssets) {
-	    if(play->collidesWith(*e)) { 
-		cout << "Player dead" << endl; }
 	}
 
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
