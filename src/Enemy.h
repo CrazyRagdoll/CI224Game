@@ -13,6 +13,7 @@ class Enemy : public GameAsset {
 
   bool collidesWith(Player & a);
 
+  //virtual void spawn();
   virtual void update();
   virtual void draw();
   virtual void clean();

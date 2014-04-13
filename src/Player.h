@@ -1,7 +1,5 @@
 #include "CubeAsset.h"
 #include "IInterpolator.h"
-#include <time.h>
-#include <unistd.h>
 #include <SDL2/SDL.h>
 
 #ifndef PLAYER_H_

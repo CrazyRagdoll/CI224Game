@@ -7,6 +7,8 @@
 #include <vector>
 #include <memory>
 #include <list>
+#include <time.h>
+#include <unistd.h>
 
 #include "GameAsset.h"
 #include "Md2Asset.h"
@@ -28,7 +30,7 @@ string filename = "data/ogre.md2";
 vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
 
-int EnemyCount = 10;
+int EnemyCount = 20;
 
 bool horrible_global_go = false;
 
@@ -51,22 +53,28 @@ Uint32 display(Uint32 interval, void *param) {
 }
 
 void display() {
-  glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+  glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+  
+  EnemyCount++;
+
+  if(player->isAlive)
+  {
+    if(fmod(EnemyCount, 20) == 0 ){
+    int pos  = int(player->bbox->getCentre()->getX());
+    int pos2 = int(player->bbox->getCentre()->getZ());
+    for( int n_2 = 0; n_2 <= 8; n_2++ )
+    {
+      int rnd = rand() % 60 - 30;
+      enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, pos2 + 25)));
+    }
+  }}
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
   for(auto it : assets)  { it->update(); } 
   for(auto it : enemies) { it->update(); }
   player->update();
-
- /*for(auto i : assets) {
-    for(auto j : assets) {
-      if((i != j) && i->collidesWith(*j)) {
-	cout << "We have a collision"  << endl;
-      }
-    }
-  } */
 
   for(auto i : enemies) { 
       if( i->collidesWith(*player)){
@@ -136,19 +144,18 @@ int main(int argc, char ** argv) {
 	//}
 	
 	//Using a for loop to create a bunch of randomly generated enemies.
-	if(player->isAlive)
+	/*if(player->isAlive)
 	{
 	for( int n = 10; n <= 100; n+= 5 )
 	{
-	    EnemyCount++;
 	    int pos = int(player->bbox->getCentre()->getZ());
 	    for( int n_2 = 0; n_2 <= 5; n_2++ )
 	    {
 		int rnd = rand() % 40 - 20;
-		enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, EnemyCount)));
+		enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
 	    }
 	} 
-	}
+	} */
 
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
 
@@ -198,6 +205,11 @@ int main(int argc, char ** argv) {
 			}	
 			    break;
 			  case SDLK_g:
+			  case SDLK_a:
+				{
+				    Camera::getInstance().setCamera(camera * Matrix4::rotationY(20.0/180.0));
+				}
+			  break;
 
 			  default:
 			    break;

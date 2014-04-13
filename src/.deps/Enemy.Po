@@ -136,11 +136,7 @@ Enemy.o: Enemy.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
- IInterpolator.h Player.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/SDL2/SDL.h \
+ IInterpolator.h Player.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
@@ -530,18 +526,6 @@ BoundingBox.h:
 IInterpolator.h:
 
 Player.h:
-
-/usr/include/unistd.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/getopt.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 /usr/include/SDL2/SDL.h:
 

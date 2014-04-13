@@ -161,16 +161,16 @@ Main.o: Main.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/4.8/bits/shared_ptr_base.h \
  /usr/include/c++/4.8/backward/auto_ptr.h /usr/include/c++/4.8/list \
  /usr/include/c++/4.8/bits/stl_list.h /usr/include/c++/4.8/bits/list.tcc \
- GameAsset.h ../include/vectormath/scalar/cpp/vectormath_aos.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h GameAsset.h \
+ ../include/vectormath/scalar/cpp/vectormath_aos.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
  Md2Asset.h TriangularPyramidAsset.h IInterpolator.h Player.h CubeAsset.h \
- /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h Enemy.h \
- BallisticInterpolator.h MovementInterpolator.h
+ Enemy.h BallisticInterpolator.h MovementInterpolator.h
 
 /usr/include/stdc-predef.h:
 
@@ -628,6 +628,18 @@ Main.o: Main.cpp /usr/include/stdc-predef.h \
 
 /usr/include/c++/4.8/bits/list.tcc:
 
+/usr/include/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
 GameAsset.h:
 
 ../include/vectormath/scalar/cpp/vectormath_aos.h:
@@ -651,18 +663,6 @@ IInterpolator.h:
 Player.h:
 
 CubeAsset.h:
-
-/usr/include/unistd.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/getopt.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 Enemy.h:
 

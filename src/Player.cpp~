@@ -6,7 +6,7 @@ Player::Player()
 	      , string("shaders/hello-gl.f.glsl")
 	      )
 {
-  Player(0, 0, 0);
+  Player(1, 0, 0);
 }
 
 Player::Player(float x, float y, float z) {
@@ -64,7 +64,6 @@ void Player::update() {
   if (isAlive) 
   {
     score += 10;
-    cout << score << endl;
   }
   else
   { 

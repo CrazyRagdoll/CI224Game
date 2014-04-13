@@ -136,16 +136,12 @@ Player.o: Player.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
- IInterpolator.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_config.h /usr/include/SDL2/SDL_platform.h \
- /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
- /usr/include/string.h /usr/include/x86_64-linux-gnu/bits/string3.h \
- /usr/include/strings.h /usr/include/inttypes.h /usr/include/iconv.h \
+ IInterpolator.h /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
+ /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
+ /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
+ /usr/include/SDL2/close_code.h /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h /usr/include/strings.h \
+ /usr/include/inttypes.h /usr/include/iconv.h \
  /usr/include/SDL2/SDL_assert.h /usr/include/SDL2/SDL_atomic.h \
  /usr/include/SDL2/SDL_audio.h /usr/include/SDL2/SDL_error.h \
  /usr/include/SDL2/SDL_endian.h /usr/include/SDL2/SDL_mutex.h \
@@ -528,18 +524,6 @@ Camera.h:
 BoundingBox.h:
 
 IInterpolator.h:
-
-/usr/include/unistd.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/getopt.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 /usr/include/SDL2/SDL.h:
 
