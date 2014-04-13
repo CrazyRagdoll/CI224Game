@@ -58,7 +58,7 @@ Uint32 display(Uint32 interval, void *param) {
 }
 
 void display() {
-  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+  glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   
   //Increase EnemyCount by 1
@@ -82,13 +82,16 @@ void display() {
     }
   }
   
- /* if(((float)t/CLOCKS_PER_SEC) == 1)
-  {
-    for(auto it : enemies) 
-    { 
-      it->incDiff(0.05); 
-    }
-  } */
+
+  //Setting different difficulty values over time to make the game harder the longer you 	play.
+  if(((float)t/CLOCKS_PER_SEC) < 1){
+	for(auto it : enemies){ it->setDiff(0.15);}}
+  if(((float)t/CLOCKS_PER_SEC) > 1 && ((float)t/CLOCKS_PER_SEC) < 2){ 
+	for(auto it : enemies){ it->setDiff(0.2);}}
+  if(((float)t/CLOCKS_PER_SEC) > 2 && ((float)t/CLOCKS_PER_SEC) < 4){ 
+	for(auto it : enemies){ it->setDiff(0.21);}}
+  if(((float)t/CLOCKS_PER_SEC) > 4){  
+	for(auto it : enemies){ it->setDiff(0.22);}} 
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency

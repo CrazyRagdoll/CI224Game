@@ -60,10 +60,15 @@ Enemy::~Enemy() {
   // TODO: do something nice and fun here.
 }
 
-//Implementing a method to increase the difficulty of the game over time
-void Enemy::incDiff(double diff){
-	difficulty = difficulty + diff;
+//Setting the difficulty of the game.
+void Enemy::setDiff(double diff){
+	difficulty = diff;
 }
+
+//Implementing a method to increase the difficulty of the game over time
+/*void Enemy::incDiff(double diff){
+	difficulty = difficulty + diff;
+} */
 
 //Implementing automatically moving enemy objects.
 void Enemy::update() {
@@ -75,7 +80,7 @@ void Enemy::update() {
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
     if( this->bbox->getCentre()->getZ() < -20) { this->dead(); }
-    //cout << difficulty << endl;
+    cout << difficulty << endl;
 
   }
   else{ this->clean(); };
