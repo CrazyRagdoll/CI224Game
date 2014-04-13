@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <time.h>
 
 #include "vectormath/scalar/cpp/vectormath_aos.h"
 #include "Camera.h"
@@ -33,6 +34,7 @@ public:
 	virtual void draw();
 	virtual void update()=0;
 	virtual void clean()=0;
+        virtual double getTime();
  	virtual bool dead(){ isAlive = false; };
 	virtual bool isItAlive(){ return isAlive; };
 

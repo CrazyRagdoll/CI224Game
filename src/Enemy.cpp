@@ -60,21 +60,25 @@ Enemy::~Enemy() {
   // TODO: do something nice and fun here.
 }
 
+//Implementing a method to increase the difficulty of the game over time
+void Enemy::incDiff(double diff){
+	difficulty = difficulty + diff;
+}
+
 //Implementing automatically moving enemy objects.
 void Enemy::update() {
 
   if(isAlive) {
 
-    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-0.2));
+    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), this->bbox->getCentre()->getY(), this->bbox->getCentre()->getZ()-difficulty));
 
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
     if( this->bbox->getCentre()->getZ() < -20) { this->dead(); }
-    //cout << this->bbox->getCentre()->getZ() << endl;
-    //cout << isItAlive() << endl;
+    //cout << difficulty << endl;
 
   }
-  else{};
+  else{ this->clean(); };
 }
 
 bool Enemy::collidesWith(Player & a) {

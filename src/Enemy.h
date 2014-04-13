@@ -13,11 +13,14 @@ class Enemy : public GameAsset {
 
   bool collidesWith(Player & a);
 
-  //virtual void spawn();
   virtual void update();
   virtual void draw();
   virtual void clean();
+  virtual void incDiff(double diff);
+
   void setInterpolator(shared_ptr<IInterpolator> li);
+  
+  double difficulty = 0.2;
 
   enum vertices {
 	F0, F1, F2, F3, B4, B5, B6, B7,

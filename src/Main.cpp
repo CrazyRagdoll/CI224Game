@@ -27,10 +27,15 @@ using namespace std;
 shared_ptr<Player> player ;
 
 string filename = "data/ogre.md2";
+
+//Adding the assets and enemy assets into the game
 vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
 
+//Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 20;
+
+clock_t t;
 
 bool horrible_global_go = false;
 
@@ -53,22 +58,37 @@ Uint32 display(Uint32 interval, void *param) {
 }
 
 void display() {
-  glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   
+  //Increase EnemyCount by 1
   EnemyCount++;
 
+  //Calculating the time to deal with difficulty 
+  t = clock();
+
+  //If the player is alive spawn enemies ever time the count increments by 20.
   if(player->isAlive)
   {
-    if(fmod(EnemyCount, 20) == 0 ){
-    int pos  = int(player->bbox->getCentre()->getX());
-    int pos2 = int(player->bbox->getCentre()->getZ());
-    for( int n_2 = 0; n_2 <= 8; n_2++ )
+    if(fmod(EnemyCount, 20) == 0 )
     {
-      int rnd = rand() % 60 - 30;
-      enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, pos2 + 25)));
+      //get the position of the player to spawn the enemies infront of him but 25 blocks 		back.
+      int pos  = int(player->bbox->getCentre()->getX());
+      for( int n_2 = 0; n_2 <= 8; n_2++ )
+      {
+	int rnd = rand() % 60 - 30;
+	enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, 25)));
+      }
     }
-  }}
+  }
+  
+ /* if(((float)t/CLOCKS_PER_SEC) == 1)
+  {
+    for(auto it : enemies) 
+    { 
+      it->incDiff(0.05); 
+    }
+  } */
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
@@ -76,6 +96,7 @@ void display() {
   for(auto it : enemies) { it->update(); }
   player->update();
 
+  //Collision detection between the player and enemies.
   for(auto i : enemies) { 
       if( i->collidesWith(*player)){
 	player->dead();
@@ -192,6 +213,7 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_LEFT:
 			{
+				//Introducing similtanious player and camera movement.
 				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.5, 0.0, 0.0)) ); 
 				shared_ptr<Point3> mLeft = player->bbox->getCentre();
 				*mLeft = Point3(mLeft->getX() - 0.5, 0.0, 0.0);
@@ -199,6 +221,7 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_RIGHT:
 			{
+				//Introducing similtanious player and camera movement.
 			    	Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-0.5, 0.0, 0.0)) );
 				shared_ptr<Point3> mRight = player->bbox->getCentre();
 				*mRight = Point3(mRight->getX() + 0.5, 0.0, 0.0);
