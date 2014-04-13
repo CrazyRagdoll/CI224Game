@@ -22,13 +22,13 @@ using namespace std;
 #define RUN_GRAPHICS_DISPLAY 0x00;
 
 //Adding the player to the game
-shared_ptr<Player> player = shared_ptr<Player> (new Player(0, 0, 0));
+shared_ptr<Player> player ;
 
 string filename = "data/ogre.md2";
 vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
 
-int EnemyCount = 0;
+int EnemyCount = 10;
 
 bool horrible_global_go = false;
 
@@ -125,6 +125,9 @@ int main(int argc, char ** argv) {
 	p->setInterpolator(i);
 	assets.push_back(p); */
 
+	//Adding the players coordinates into the game
+	player = shared_ptr<Player> (new Player(0, 0, 0));
+	
 	//Using lists to create multiple enemies.
 	//for( int n = 0; n < 5; n++)
 	//{
@@ -132,16 +135,17 @@ int main(int argc, char ** argv) {
 	//	assets.push_back(Enemies);
 	//}
 	
-	//Using a for loop to create a bunch or randomly generated enemies.
+	//Using a for loop to create a bunch of randomly generated enemies.
 	if(player->isAlive)
 	{
 	for( int n = 10; n <= 100; n+= 5 )
 	{
+	    EnemyCount++;
 	    int pos = int(player->bbox->getCentre()->getZ());
 	    for( int n_2 = 0; n_2 <= 5; n_2++ )
 	    {
 		int rnd = rand() % 40 - 20;
-		enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
+		enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, EnemyCount)));
 	    }
 	} 
 	}
@@ -173,9 +177,9 @@ int main(int argc, char ** argv) {
 			case SDL_KEYDOWN:
 			  Matrix4 camera = Camera::getInstance().getCameraM();
 			  switch(event.key.keysym.sym){
-			/*case SDLK_UP:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 1.0, 0.0)) );
-			    break; */
+			case SDLK_UP:
+			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, -5.0)));
+			    break; 
 			  case SDLK_DOWN:
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, 5.0))); 
 			    break;
@@ -184,7 +188,6 @@ int main(int argc, char ** argv) {
 				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.5, 0.0, 0.0)) ); 
 				shared_ptr<Point3> mLeft = player->bbox->getCentre();
 				*mLeft = Point3(mLeft->getX() - 0.5, 0.0, 0.0);
-				//assets.push_back(play);
 			}		 
 			    break;
 			  case SDLK_RIGHT:
@@ -192,7 +195,6 @@ int main(int argc, char ** argv) {
 			    	Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-0.5, 0.0, 0.0)) );
 				shared_ptr<Point3> mRight = player->bbox->getCentre();
 				*mRight = Point3(mRight->getX() + 0.5, 0.0, 0.0);
-				//assets.push_back(play);
 			}	
 			    break;
 			  case SDLK_g:

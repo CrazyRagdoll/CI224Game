@@ -61,12 +61,16 @@ Player::~Player() {
 }
 
 void Player::update() {
-  if (isAlive) {
+  if (isAlive) 
+  {
+    score += 10;
   }
-  else{ 
+  else
+  { 
     cout << "You have died." << endl;
-    cout << "Your Score: " + score << endl;
-    this->clean();   
+    cout << "Your Score: " << score << endl;
+    this->clean();
+    SDL_Quit();
   }
 }
 

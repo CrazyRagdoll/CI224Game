@@ -166,7 +166,11 @@ Main.o: Main.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
  Md2Asset.h TriangularPyramidAsset.h IInterpolator.h Player.h CubeAsset.h \
- Enemy.h BallisticInterpolator.h MovementInterpolator.h
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h Enemy.h \
+ BallisticInterpolator.h MovementInterpolator.h
 
 /usr/include/stdc-predef.h:
 
@@ -647,6 +651,18 @@ IInterpolator.h:
 Player.h:
 
 CubeAsset.h:
+
+/usr/include/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 Enemy.h:
 
