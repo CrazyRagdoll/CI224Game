@@ -114,18 +114,32 @@ void display() {
     }
   }
 
+  //Collision detection between the enemies and bullets
+  for(auto i : enemies) {
+    for(auto j : bullets) {
+      if( j->collidesWith(*i)){
+	i->dead();
+	j->dead();
+      }
+    }
+  }
+
   //for(auto it : assets)  { it->draw(); } 
   for(auto it : enemies) { if(it->isItAlive()){ it->draw(); }}
   for(auto it : bullets) { if(it->isItAlive()){ it->draw(); }}
   player->draw();
 
   //delete dead enemies
-  for(auto it : enemies)
-  {
-    if(!it->isItAlive())
-    {
+  for(auto it : enemies) {
+    if(!it->isAlive) {
       it.reset();
     }	
+  }
+
+  for(auto it : bullets) {
+    if(!it->isAlive) {
+      it.reset();
+    }
   }
 
   //Reseting the bullet variable so that it can be "fired" again
@@ -257,6 +271,7 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_g:
 				//Adding player controlled bullets into the game.
+				bullets.push_back(shared_ptr<Bullet> (new Bullet(0,0,0)));
 				horrible_global_go = true;
 			  default:
 			    break;
