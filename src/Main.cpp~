@@ -88,6 +88,13 @@ void display() {
     }
   }
 
+  //Collision detection between the player and enemies.
+  for(auto i : enemies) { 
+      if( i->collidesWith(*player)){
+	player->dead();
+    }
+  }
+
   //Collision detection between the enemies and bullets
 /*  for(auto i : enemies) {
     for(auto j : bullets) {

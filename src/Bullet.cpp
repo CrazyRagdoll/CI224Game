@@ -63,7 +63,7 @@ Bullet::Bullet(float x, float y, float z) {
   g_element_buffer_data[17] = 4;
 
   bbox.reset();
-  bbox = shared_ptr<BoundingBox>(new BoundingBox(Point3(x, y, z), 1.0, 1.0, 1.0));
+  bbox = shared_ptr<BoundingBox>(new BoundingBox(Point3(x, y, z), 0.5, 0.5, 0.5));
 
   make_resources();
 }
@@ -77,7 +77,7 @@ void Bullet::update() {
   if (isAlive) {
     shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(0, 0, this->bbox->getCentre()->getZ() + 0.1));
     this->bbox.reset();
-    this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
+    this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 0.5, 0.5, 0.5));
     if( this->bbox->getCentre()->getZ() > 25) { this->dead(); }
   }
 }
