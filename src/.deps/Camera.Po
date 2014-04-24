@@ -1,5 +1,4 @@
-Camera.o: Camera.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h Camera.h \
+Camera.o: Camera.cpp /usr/include/stdc-predef.h Camera.h \
  ../include/vectormath/scalar/cpp/vectormath_aos.h /usr/include/math.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -18,8 +17,6 @@ Camera.o: Camera.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/mat_aos.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 Camera.h:
 

@@ -1,6 +1,5 @@
 BallisticInterpolator.o: BallisticInterpolator.cpp \
- /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
- BallisticInterpolator.h \
+ /usr/include/stdc-predef.h BallisticInterpolator.h \
  ../include/vectormath/scalar/cpp/vectormath_aos.h /usr/include/math.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -19,8 +18,6 @@ BallisticInterpolator.o: BallisticInterpolator.cpp \
  ../include/vectormath/scalar/cpp/mat_aos.h IInterpolator.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 BallisticInterpolator.h:
 

@@ -33,7 +33,7 @@ vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
-int EnemyCount = 20;
+int EnemyCount = 30;
 
 clock_t t;
 
@@ -67,10 +67,10 @@ void display() {
   //Calculating the time to deal with difficulty 
   t = clock();
 
-  //If the player is alive spawn enemies ever time the count increments by 20.
+  //If the player is alive spawn enemies every time the count increments by 20.
   if(player->isAlive)
   {
-    if(fmod(EnemyCount, 20) == 0 )
+    if(fmod(EnemyCount, 40) == 0 )
     {
       //get the position of the player to spawn the enemies infront of him but 25 blocks 		back.
       int pos  = int(player->bbox->getCentre()->getX());
@@ -82,21 +82,24 @@ void display() {
     }
   }
   
-
   //Setting different difficulty values over time to make the game harder the longer you 	play.
+  //for(double d = 0.1; d <= 4; d += 0.001){
+	//for(auto it : enemies){ it->setDiff(d); }}}
+
+
   if(((float)t/CLOCKS_PER_SEC) < 1){
 	for(auto it : enemies){ it->setDiff(0.15);}}
   if(((float)t/CLOCKS_PER_SEC) > 1 && ((float)t/CLOCKS_PER_SEC) < 2){ 
-	for(auto it : enemies){ it->setDiff(0.2);}}
+	for(auto it : enemies){ it->setDiff(0.175);}}
   if(((float)t/CLOCKS_PER_SEC) > 2 && ((float)t/CLOCKS_PER_SEC) < 4){ 
-	for(auto it : enemies){ it->setDiff(0.21);}}
+	for(auto it : enemies){ it->setDiff(0.2);}}
   if(((float)t/CLOCKS_PER_SEC) > 4){  
-	for(auto it : enemies){ it->setDiff(0.22);}} 
+	for(auto it : enemies){ it->setDiff(0.225);}} 
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
   for(auto it : assets)  { it->update(); } 
-  for(auto it : enemies) { it->update(); }
+  for(auto it : enemies) { if(it->isItAlive()){ it->update(); }}
   player->update();
 
   //Collision detection between the player and enemies.
@@ -107,8 +110,17 @@ void display() {
   }
 
   for(auto it : assets)  { it->draw(); } 
-  for(auto it : enemies) { it->draw(); }
+  for(auto it : enemies) { if(it->isItAlive()){ it->draw(); }}
   player->draw();
+
+  //delete dead enemies
+  for(auto it : enemies)
+  {
+    if(!it->isItAlive())
+    {
+      it.reset();
+    }	
+  }
   
   // Don't forget to swap the buffers
   SDL_GL_SwapWindow(window);

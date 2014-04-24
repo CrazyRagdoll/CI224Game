@@ -23,6 +23,10 @@ GameAsset::GameAsset(const string & v_shader, const string & f_shader) {
   this->f_shader = f_shader;
 }
 
+GameAsset::clean() {
+  delete this;
+}
+
 GameAsset::~GameAsset() {
 	// TODO Auto-generated destructor stub
 }

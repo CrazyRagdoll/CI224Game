@@ -1,5 +1,4 @@
-BoundingBox.o: BoundingBox.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h BoundingBox.h \
+BoundingBox.o: BoundingBox.cpp /usr/include/stdc-predef.h BoundingBox.h \
  /usr/include/c++/4.8/utility \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -87,6 +86,7 @@ BoundingBox.o: BoundingBox.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/c++/4.8/cstdio \
  /usr/include/libio.h /usr/include/_G_config.h \
@@ -117,8 +117,6 @@ BoundingBox.o: BoundingBox.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/mat_aos.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 BoundingBox.h:
 
@@ -339,6 +337,8 @@ BoundingBox.h:
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 

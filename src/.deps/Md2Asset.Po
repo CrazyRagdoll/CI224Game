@@ -1,5 +1,4 @@
-Md2Asset.o: Md2Asset.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h Md2Asset.h \
+Md2Asset.o: Md2Asset.cpp /usr/include/stdc-predef.h Md2Asset.h \
  /usr/include/GL/glew.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
@@ -76,6 +75,7 @@ Md2Asset.o: Md2Asset.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/c++/4.8/cstdio \
  /usr/include/libio.h /usr/include/_G_config.h \
@@ -138,8 +138,6 @@ Md2Asset.o: Md2Asset.cpp /usr/include/stdc-predef.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 Md2Asset.h:
 
@@ -330,6 +328,8 @@ Md2Asset.h:
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
