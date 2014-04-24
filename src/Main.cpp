@@ -15,8 +15,9 @@
 #include "TriangularPyramidAsset.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Bullet.h"
 #include "BallisticInterpolator.h"
-#include "MovementInterpolator.h"
+//m#include "MovementInterpolator.h"
 #include "Camera.h"
 
 using namespace std;
@@ -31,6 +32,7 @@ string filename = "data/ogre.md2";
 //Adding the assets and enemy assets into the game
 vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
+vector<shared_ptr<Bullet>> bullets;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 40;
@@ -113,6 +115,7 @@ void display() {
 
   for(auto it : assets)  { it->draw(); } 
   for(auto it : enemies) { if(it->isItAlive()){ it->draw(); }}
+  for(auto it : bullets) { if(it->isItAlive()){ it->draw(); }}
   player->draw();
 
   //delete dead enemies
@@ -173,6 +176,10 @@ int main(int argc, char ** argv) {
 	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 10.0, 0), 60));
 	p->setInterpolator(i);
 	assets.push_back(p); */
+
+	//Testing a bullet
+	shared_ptr<Bullet> b = shared_ptr<Bullet>(new Bullet(0, 1, 0));
+	bullets.push_back(b);
 
 	//Adding the players coordinates into the game
 	player = shared_ptr<Player> (new Player(0, 0, 0));
