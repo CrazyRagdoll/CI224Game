@@ -33,7 +33,6 @@ bool GameAsset::collidesWith(GameAsset & a) {
 
 void GameAsset::draw() {
   glUseProgram(program);
-
   
   Vector4 tx = Camera::getInstance().getCameraM() * *(bbox->getCentre());
   float tx_unpacked[] = {tx.getX(), tx.getY(), tx.getZ(), tx.getW()};
