@@ -102,8 +102,9 @@ void display() {
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
-  for(auto it : assets)  { it->update(); } 
+  //for(auto it : assets)  { it->update(); } 
   for(auto it : enemies) { if(it->isItAlive()){ it->update(); }}
+  for(auto it : bullets) { if(horrible_global_go && it->isItAlive()){ it->update(); }}
   player->update();
 
   //Collision detection between the player and enemies.
@@ -113,7 +114,7 @@ void display() {
     }
   }
 
-  for(auto it : assets)  { it->draw(); } 
+  //for(auto it : assets)  { it->draw(); } 
   for(auto it : enemies) { if(it->isItAlive()){ it->draw(); }}
   for(auto it : bullets) { if(it->isItAlive()){ it->draw(); }}
   player->draw();
@@ -128,7 +129,7 @@ void display() {
   }
 
   //Reseting the bullet variable so that it can be "fired" again
-  bool horrible_global_go = false;
+  //bool horrible_global_go = false;
   
   // Don't forget to swap the buffers
   SDL_GL_SwapWindow(window);
@@ -256,7 +257,7 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_g:
 				//Adding player controlled bullets into the game.
-
+				horrible_global_go = true;
 			  default:
 			    break;
 			  }
