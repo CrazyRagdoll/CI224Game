@@ -33,10 +33,11 @@ vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
-int EnemyCount = 30;
+int EnemyCount = 40;
 
 clock_t t;
 
+//
 bool horrible_global_go = false;
 
 SDL_Window * window = nullptr;
@@ -104,7 +105,7 @@ void display() {
 
   //Collision detection between the player and enemies.
   for(auto i : enemies) { 
-      if( i->isItAlive() && mi->collidesWith(*player)){
+      if( i->collidesWith(*player)){
 	player->dead();
     }
   }
@@ -243,6 +244,7 @@ int main(int argc, char ** argv) {
 			}	
 			    break;
 			  case SDLK_g:
+				//Adding player controlled bullets into the game.
 
 			  default:
 			    break;

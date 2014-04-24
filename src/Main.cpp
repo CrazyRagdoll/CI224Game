@@ -33,10 +33,12 @@ vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
-int EnemyCount = 30;
+int EnemyCount = 40;
 
+//Clock used in my implementation to help time the game - currently used to increase difficulty as the game plays out
 clock_t t;
 
+//Using this variable as a bullet implementation
 bool horrible_global_go = false;
 
 SDL_Window * window = nullptr;
@@ -121,6 +123,9 @@ void display() {
       it.reset();
     }	
   }
+
+  //Reseting the bullet variable so that it can be "fired" again
+  bool horrible_global_go = false;
   
   // Don't forget to swap the buffers
   SDL_GL_SwapWindow(window);
@@ -243,6 +248,7 @@ int main(int argc, char ** argv) {
 			}	
 			    break;
 			  case SDLK_g:
+				//Adding player controlled bullets into the game.
 
 			  default:
 			    break;
