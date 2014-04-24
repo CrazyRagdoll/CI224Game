@@ -32,7 +32,9 @@ string filename = "data/ogre.md2";
 //Adding the assets and enemy assets into the game
 vector<shared_ptr<GameAsset>> assets;
 vector<shared_ptr<Enemy>> enemies;
+vector<shared_ptr<Enemy>> tmpenemies;
 vector<shared_ptr<Bullet>> bullets;
+vector<shared_ptr<Bullet>> tmpbullets;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 40;
@@ -81,15 +83,27 @@ void display() {
       for( int n_2 = 0; n_2 <= 8; n_2++ )
       {
 	int rnd = rand() % 60 - 30;
-	enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, 25)));
+	tmpenemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, 25)));
       }
     }
   }
+
+  //Collision detection between the enemies and bullets
+/*  for(auto i : enemies) {
+    for(auto j : bullets) {
+      if( j->collidesWith(*i)){
+	i->dead();
+	j->dead();
+      }
+    }
+  } */
+
+  //moving the enemies from the temp list to the main list if they're alive
+  for(auto it : tmpenemies) { if(it->isAlive){ enemies = tmpenemies; }}
   
   //Setting different difficulty values over time to make the game harder the longer you 	play.
   //for(double d = 0.1; d <= 4; d += 0.001){
 	//for(auto it : enemies){ it->setDiff(d); }}}
-
 
   if(((float)t/CLOCKS_PER_SEC) < 1){
 	for(auto it : enemies){ it->setDiff(0.15);}}
@@ -103,44 +117,28 @@ void display() {
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
   //for(auto it : assets)  { it->update(); } 
-  for(auto it : enemies) { if(it->isItAlive()){ it->update(); }}
-  for(auto it : bullets) { if(horrible_global_go && it->isItAlive()){ it->update(); }}
+  for(auto it : enemies) { it->update(); }
+  for(auto it : bullets) { if(it->isAlive){ it->update(); }}
   player->update();
 
-  //Collision detection between the player and enemies.
-  for(auto i : enemies) { 
-      if( i->collidesWith(*player)){
-	player->dead();
-    }
-  }
-
-  //Collision detection between the enemies and bullets
-  for(auto i : enemies) {
-    for(auto j : bullets) {
-      if( j->collidesWith(*i)){
-	i->dead();
-	j->dead();
-      }
-    }
-  }
-
   //for(auto it : assets)  { it->draw(); } 
-  for(auto it : enemies) { if(it->isItAlive()){ it->draw(); }}
-  for(auto it : bullets) { if(it->isItAlive()){ it->draw(); }}
+  for(auto it : enemies) { it->draw(); }
+  for(auto it : bullets) { if(it->isAlive){ it->draw(); }}
   player->draw();
 
   //delete dead enemies
-  for(auto it : enemies) {
+/*  for(auto it : enemies) {
     if(!it->isAlive) {
       it.reset();
     }	
   }
 
+  //deleting "dead" bullets
   for(auto it : bullets) {
     if(!it->isAlive) {
       it.reset();
     }
-  }
+  }*/
 
   //Reseting the bullet variable so that it can be "fired" again
   //bool horrible_global_go = false;
@@ -194,7 +192,9 @@ int main(int argc, char ** argv) {
 
 	//Testing a bullet
 	shared_ptr<Bullet> b = shared_ptr<Bullet>(new Bullet(0, 1, 0));
-	bullets.push_back(b);
+	tmpbullets.push_back(b);
+
+	if(horrible_global_go && b->isAlive) { bullets = tmpbullets; }
 
 	//Adding the players coordinates into the game
 	player = shared_ptr<Player> (new Player(0, 0, 0));

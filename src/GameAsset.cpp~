@@ -8,7 +8,7 @@
 #include "GameAsset.h"
 
 void GameAsset::common_init() {
-  bbox = shared_ptr<BoundingBox>(new BoundingBox(Point3(0,0,0), 1.0, 1.0, 1.0)); // unit cube
+  bbox = shared_ptr<BoundingBox>(new BoundingBox(Point3(0,0,0), 0.0, 0.0, 1.0)); // unit cube
 }
 
 GameAsset::GameAsset() {
@@ -21,10 +21,6 @@ GameAsset::GameAsset(const string & v_shader, const string & f_shader) {
   common_init();
   this->v_shader = v_shader;
   this->f_shader = f_shader;
-}
-
-GameAsset::clean() {
-  delete this;
 }
 
 GameAsset::~GameAsset() {

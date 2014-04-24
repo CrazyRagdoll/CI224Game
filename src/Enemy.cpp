@@ -57,6 +57,7 @@ Enemy::Enemy(float x, float y, float z) {
 }
 
 Enemy::~Enemy() {
+  delete this;
   // TODO: do something nice and fun here.
 }
 
