@@ -79,7 +79,7 @@ void Enemy::update() {
 
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
-    if( this->bbox->getCentre()->getZ() < -10) { this->dead(); }
+    if( this->bbox->getCentre()->getZ() < -10) { this->dead(); this.clear(); }
     //cout << difficulty << endl;
 
   }

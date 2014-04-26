@@ -72,16 +72,15 @@ void display() {
 
   //Calculating the time to deal with difficulty 
   t = clock();
+  double time = ((float)t/CLOCKS_PER_SEC);
 
+  cout << time << endl;
   //If the player is alive spawn enemies every time the count increments by 20.
-  if(player->isAlive)
-  {
-    if(fmod(EnemyCount, 40) == 0 )
-    {
-      //get the position of the player to spawn the enemies infront of him but 25 blocks 		back.
+  if(player->isAlive){
+    if(fmod(EnemyCount, 40) == 0 ){
+      //get the position of the player to spawn the enemies infront of him but 25 		  blocks back.
       int pos  = int(player->bbox->getCentre()->getX());
-      for( int n_2 = 0; n_2 <= 8; n_2++ )
-      {
+      for( int n_2 = 0; n_2 <= 6; n_2++ ){
 	int rnd = rand() % 60 - 30;
 	enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, 25)));
       }
@@ -109,13 +108,13 @@ void display() {
   //for(double d = 0.1; d <= 4; d += 0.001){
 	//for(auto it : enemies){ it->setDiff(d); }}}
 
-  if(((float)t/CLOCKS_PER_SEC) < 1){
+  if(((float)t/CLOCKS_PER_SEC) < 5){
 	for(auto it : enemies){ it->setDiff(0.15);}}
-  if(((float)t/CLOCKS_PER_SEC) > 1 && ((float)t/CLOCKS_PER_SEC) < 2){ 
+  if(((float)t/CLOCKS_PER_SEC) > 5 && ((float)t/CLOCKS_PER_SEC) < 10){ 
 	for(auto it : enemies){ it->setDiff(0.175);}}
-  if(((float)t/CLOCKS_PER_SEC) > 2 && ((float)t/CLOCKS_PER_SEC) < 4){ 
+  if(((float)t/CLOCKS_PER_SEC) > 10 && ((float)t/CLOCKS_PER_SEC) < 15){ 
 	for(auto it : enemies){ it->setDiff(0.2);}}
-  if(((float)t/CLOCKS_PER_SEC) > 4){  
+  if(((float)t/CLOCKS_PER_SEC) > 15){  
 	for(auto it : enemies){ it->setDiff(0.225);}} 
 
   //clearing the temp list of enemies
@@ -130,20 +129,23 @@ void display() {
 
   //adding the enmies to the temp list
   for(auto it : enemies) { if(it->isAlive) { tmpEnemies = enemies; }}
-	
+
   //for(auto it : assets)  { it->draw(); } 
   for(auto it : enemies) { it->draw(); }
   for(auto it : bullets) { if(it->isAlive){ it->draw(); }}
   player->draw();
+
+  //swapping the enemies list with the alive enemies
+  enemies.swap(tmpEnemies);
 
   //delete dead enemies
  /* for(auto it : enemies) {
     if(!it->isAlive) {
       it.reset();
     }	
-  }
+  }*/
 
-  //deleting "dead" bullets
+ /* //deleting "dead" bullets
   for(auto it : bullets) {
     if(!it->isAlive) {
       it.reset();
@@ -208,14 +210,7 @@ int main(int argc, char ** argv) {
 
 	//Adding the players coordinates into the game
 	player = shared_ptr<Player> (new Player(0, 0, 0));
-	
-	//Using lists to create multiple enemies.
-	//for( int n = 0; n < 5; n++)
-	//{
-	//	list<shared_ptr<Enemy>> Enemies ( n, shared_ptr<Enemy> (new Enemy(n,0,10)));
-	//	assets.push_back(Enemies);
-	//}
-	
+
 	//Using a for loop to create a bunch of randomly generated enemies.
 	/*if(player->isAlive)
 	{
