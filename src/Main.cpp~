@@ -196,11 +196,6 @@ int main(int argc, char ** argv) {
 	  return 1;
 	}
 
-	/*shared_ptr<TriangularPyramidAsset> p = shared_ptr<TriangularPyramidAsset> (new TriangularPyramidAsset(0, 0, 0));	
-	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 10.0, 0), 60));
-	p->setInterpolator(i);
-	assets.push_back(p); */
-
 	//Testing a bullet
 	shared_ptr<Bullet> b = shared_ptr<Bullet>(new Bullet(0, 1, 0));
 	tmpBullets.push_back(b);

@@ -256,7 +256,7 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_g:
 				//Adding player controlled bullets into the game.
-				bullets.push_back(shared_ptr<Bullet> (new Bullet(0,0,0)));
+				bullets.push_back(shared_ptr<Bullet> (new Bullet(player->bbox->getCentre()->getX(),0,0)));
 				horrible_global_go = true;
 			  default:
 			    break;
