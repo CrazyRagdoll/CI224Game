@@ -65,10 +65,10 @@ void Enemy::setDiff(double diff){
 	difficulty = diff;
 }
 
-//Implementing a method to increase the difficulty of the game over time
-/*void Enemy::incDiff(double diff){
-	difficulty = difficulty + diff;
-} */
+//Returning the difficulty of the game
+double Enemy::getDiff(){
+	return difficulty;
+}
 
 //Implementing automatically moving enemy objects.
 void Enemy::update() {

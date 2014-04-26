@@ -17,7 +17,7 @@ class Enemy : public GameAsset {
   virtual void draw();
   virtual void clean();
   virtual void setDiff(double diff);
-  //virtual void incDiff(double diff);
+  virtual double getDiff();
 
   void setInterpolator(shared_ptr<IInterpolator> li);
   

@@ -17,7 +17,6 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "BallisticInterpolator.h"
-//m#include "MovementInterpolator.h"
 #include "Camera.h"
 
 using namespace std;
@@ -35,6 +34,9 @@ vector<shared_ptr<Enemy>> enemies;
 vector<shared_ptr<Enemy>> tmpEnemies;
 vector<shared_ptr<Bullet>> bullets;
 vector<shared_ptr<Bullet>> tmpBullets;
+
+//Global variable to hold the "difficulty" of the game
+double diffy = 0.15;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 40;
@@ -75,6 +77,7 @@ void display() {
   double time = ((float)t/CLOCKS_PER_SEC);
 
   cout << time << endl;
+  cout << fmod(time, 0.5) << endl;
   //If the player is alive spawn enemies every time the count increments by 20.
   if(player->isAlive){
     if(fmod(EnemyCount, 40) == 0 ){
@@ -105,47 +108,54 @@ void display() {
   } 
   
   //Setting different difficulty values over time to make the game harder the longer you 	play.
-  //for(double d = 0.1; d <= 4; d += 0.001){
-	//for(auto it : enemies){ it->setDiff(d); }}}
+  for(auto it : enemies){
+    it->setDiff(diffy);
+    }
+  if((fmod(time, 0.5) < 0.002) && (fmod(time, 0.5) > 0.0)){ 
+      diffy += 0.01; 
+    }
 
-  if(((float)t/CLOCKS_PER_SEC) < 5){
+ /* if(((float)t/CLOCKS_PER_SEC) < 5){
 	for(auto it : enemies){ it->setDiff(0.15);}}
   if(((float)t/CLOCKS_PER_SEC) > 5 && ((float)t/CLOCKS_PER_SEC) < 10){ 
 	for(auto it : enemies){ it->setDiff(0.175);}}
   if(((float)t/CLOCKS_PER_SEC) > 10 && ((float)t/CLOCKS_PER_SEC) < 15){ 
 	for(auto it : enemies){ it->setDiff(0.2);}}
   if(((float)t/CLOCKS_PER_SEC) > 15){  
-	for(auto it : enemies){ it->setDiff(0.225);}} 
+	for(auto it : enemies){ it->setDiff(0.225);}} */
 
-  //clearing the temp list of enemies
+  //clearing the temp list of enemies and bullets
   tmpEnemies.clear();
+  tmpBullets.clear();
 
   // This O(n + n^2 + n) sequence of loops is written for clarity,
   // not efficiency
   //for(auto it : assets)  { it->update(); } 
   for(auto it : enemies) { it->update(); }
-  for(auto it : bullets) { if(it->isAlive){ it->update(); }}
+  for(auto it : bullets) { it->update(); }
   player->update();
 
-  //adding the enmies to the temp list
+  //adding the enmies to the temp list + bullets
   for(auto it : enemies) { if(it->isAlive) { tmpEnemies.push_back(it); }}
+  for(auto it : bullets) { if(it->isAlive) { tmpBullets.push_back(it); }}
 
   //for(auto it : assets)  { it->draw(); } 
   for(auto it : enemies) { it->draw(); }
-  for(auto it : bullets) { if(it->isAlive){ it->draw(); }}
+  for(auto it : bullets) { it->draw(); }
   player->draw();
 
-  //swapping the enemies list with the alive enemies
+  //swapping the enemies list with the alive enemies + bullets
   enemies.swap(tmpEnemies);
+  bullets.swap(tmpBullets);
 
-  //delete dead enemies
- /* for(auto it : enemies) {
+ /* //delete dead enemies
+  for(auto it : enemies) {
     if(!it->isAlive) {
       it.reset();
     }	
-  }*/
+  }
 
- /* //deleting "dead" bullets
+  //deleting "dead" bullets
   for(auto it : bullets) {
     if(!it->isAlive) {
       it.reset();
