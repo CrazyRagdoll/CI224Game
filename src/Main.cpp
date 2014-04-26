@@ -113,15 +113,6 @@ void display() {
       diffy += 0.01; 
     } 
 
- /* if(((float)t/CLOCKS_PER_SEC) < 5){
-	for(auto it : enemies){ it->setDiff(0.15);}}
-  if(((float)t/CLOCKS_PER_SEC) > 5 && ((float)t/CLOCKS_PER_SEC) < 10){ 
-	for(auto it : enemies){ it->setDiff(0.175);}}
-  if(((float)t/CLOCKS_PER_SEC) > 10 && ((float)t/CLOCKS_PER_SEC) < 15){ 
-	for(auto it : enemies){ it->setDiff(0.2);}}
-  if(((float)t/CLOCKS_PER_SEC) > 15){  
-	for(auto it : enemies){ it->setDiff(0.225);}} */
-
   //clearing the temp list of enemies and bullets
   tmpEnemies.clear();
   tmpBullets.clear();
@@ -153,12 +144,12 @@ void display() {
     }	
   }
 
-  /*//deleting "dead" bullets
+  //deleting "dead" bullets
   for(auto it : bullets) {
     if(!it->isAlive) {
       it.reset();
     }
-  }*/
+  }
 
   //Reseting the bullet variable so that it can be "fired" again
   //bool horrible_global_go = false;
@@ -205,11 +196,6 @@ int main(int argc, char ** argv) {
 	  return 1;
 	}
 
-	/*shared_ptr<TriangularPyramidAsset> p = shared_ptr<TriangularPyramidAsset> (new TriangularPyramidAsset(0, 0, 0));	
-	shared_ptr<IInterpolator> i = shared_ptr<IInterpolator>(new BallisticInterpolator(Vector3(0.0, 10.0, 0), 60));
-	p->setInterpolator(i);
-	assets.push_back(p); */
-
 	//Testing a bullet
 	shared_ptr<Bullet> b = shared_ptr<Bullet>(new Bullet(0, 1, 0));
 	tmpBullets.push_back(b);
@@ -218,20 +204,6 @@ int main(int argc, char ** argv) {
 
 	//Adding the players coordinates into the game
 	player = shared_ptr<Player> (new Player(0, 0, 0));
-
-	//Using a for loop to create a bunch of randomly generated enemies.
-	/*if(player->isAlive)
-	{
-	for( int n = 10; n <= 100; n+= 5 )
-	{
-	    int pos = int(player->bbox->getCentre()->getZ());
-	    for( int n_2 = 0; n_2 <= 5; n_2++ )
-	    {
-		int rnd = rand() % 40 - 20;
-		enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, n)));
-	    }
-	} 
-	} */
 
 	//assets.push_back(shared_ptr<Md2Asset> (new Md2Asset(filename)));
 
