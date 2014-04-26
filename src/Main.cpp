@@ -35,11 +35,16 @@ vector<shared_ptr<Enemy>> tmpEnemies;
 vector<shared_ptr<Bullet>> bullets;
 vector<shared_ptr<Bullet>> tmpBullets;
 
+//Adding ammo to give to the player
+int Ammo = 1;
+
 //Global variable to hold the "difficulty" of the game
-double diffy = 0.15;
+double Diffy = 0.15;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
-int EnemyCount = 40;
+int EnemyCount = 0;
+int SpawnRate = 50;
+int EnemiesPerSpawn = 8;
 
 //Clock used in my implementation to help time the game - currently used to increase difficulty as the game plays out
 clock_t t;
@@ -76,12 +81,15 @@ void display() {
   t = clock();
   double time = ((float)t/CLOCKS_PER_SEC);
 
+  //Giving the player an extra bullet every 5 seconds
+  if((fmod(time, 1.5) < 0.002) && (fmod(time, 2.5) > 0)){ Ammo ++; }
+
   //If the player is alive spawn enemies every time the count increments by 20.
   if(player->isAlive){
-    if(fmod(EnemyCount, 40) == 0 ){
+    if(fmod(EnemyCount, SpawnRate) == 0 ){
       //get the position of the player to spawn the enemies infront of him but 25 		  blocks back.
       int pos  = int(player->bbox->getCentre()->getX());
-      for( int n_2 = 0; n_2 <= 6; n_2++ ){
+      for( int n_2 = 0; n_2 <= EnemiesPerSpawn; n_2++ ){
 	int rnd = rand() % 60 - 30;
 	enemies.push_back(shared_ptr<Enemy> (new Enemy(pos + rnd, 0, 25)));
       }
@@ -107,10 +115,10 @@ void display() {
   
   //Setting different difficulty values over time to make the game harder the longer you 	play.
   for(auto it : enemies){
-    it->setDiff(diffy);
+    it->setDiff(Diffy);
     }
   if((fmod(time, 0.5) < 0.002) && (fmod(time, 0.5) > 0.0)){ 
-      diffy += 0.01; 
+      Diffy += 0.01; 
     } 
 
   //clearing the temp list of enemies and bullets
@@ -196,12 +204,6 @@ int main(int argc, char ** argv) {
 	  return 1;
 	}
 
-	//Testing a bullet
-	shared_ptr<Bullet> b = shared_ptr<Bullet>(new Bullet(0, 1, 0));
-	tmpBullets.push_back(b);
-
-	if(horrible_global_go && b->isAlive) { bullets = tmpBullets; }
-
 	//Adding the players coordinates into the game
 	player = shared_ptr<Player> (new Player(0, 0, 0));
 
@@ -256,8 +258,12 @@ int main(int argc, char ** argv) {
 			    break;
 			  case SDLK_g:
 				//Adding player controlled bullets into the game.
-				bullets.push_back(shared_ptr<Bullet> (new Bullet(player->bbox->getCentre()->getX(),0,0)));
-				horrible_global_go = true;
+			{
+				if(Ammo >= 1){		
+				  bullets.push_back(shared_ptr<Bullet> (new Bullet(double(player->bbox->getCentre()->getX()),0,0)));
+				  Ammo --;
+				}
+			}
 			  default:
 			    break;
 			  }

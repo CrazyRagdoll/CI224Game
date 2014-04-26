@@ -75,7 +75,7 @@ Bullet::~Bullet() {
 void Bullet::update() {
 
   if (isAlive) {
-    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(0, 0, this->bbox->getCentre()->getZ() + 0.1));
+    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->bbox->getCentre()->getX(), 0, this->bbox->getCentre()->getZ() + 0.1));
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 0.5, 0.5, 0.5));
     if( this->bbox->getCentre()->getZ() > 25) { this->dead(); }
