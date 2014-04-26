@@ -13,24 +13,31 @@ Player::Player(float x, float y, float z) {
   this->li = nullptr;
 
   // A default "unit" cube
-  num_vertices = 8;
-  num_triangles = 12;
+  num_vertices = 4;
+  num_triangles = 4;
   g_vertex_buffer_data = new GLfloat[num_vertices * 3]{
 
   //     x      y     z
-	-0.5, -0.5,  0.5, //F - 0
-	 0.5, -0.5,  0.5, //F - 1
-	-0.5,  0.5,  0.5, //F - 2
-	 0.5,  0.5,  0.5, //F - 3
-	-0.5, -0.5, -0.5, //B - 4
+	-0.5, -0.5, -0.5, //F - 0  //base of the triangle player
+	 0.5, -0.5, -0.5, //F - 1
+	 0.0, -0.5,  0.5, //F - 2
+
+	 0.0,  0.0,  0.0, //F - 3  //top point og the triangle player
+	
+	/*-0.5, -0.5, -0.5, //B - 4
 	 0.5, -0.5, -0.5, //B - 5
 	-0.5,  0.5, -0.5, //B - 6
-	 0.5,  0.5, -0.5  //B - 7
+	 0.5,  0.5, -0.5  //B - 7 */
 }; // three points per vertex
 
   g_element_buffer_data = new GLushort[num_triangles * 3]{
 
-	F0, F1, F2,  //front
+	F0, F1, F2,   //Base
+	F0, F1, F3,   //Back
+	F1, F2, F3,   //RightSide
+	F2, F0, F0    //LeftSide
+
+/*	F0, F1, F2,  //front
 	F1, F3, F2,
 
 	F1, B5, F3,  //right
@@ -46,7 +53,7 @@ Player::Player(float x, float y, float z) {
 	F3, B7, B6,
 
 	B4, B5, F0,  //bottom
-	B5, F1, F0
+	B5, F1, F0		*/
 	
 }; // three vertices per triangle
 

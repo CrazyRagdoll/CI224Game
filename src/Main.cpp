@@ -76,8 +76,6 @@ void display() {
   t = clock();
   double time = ((float)t/CLOCKS_PER_SEC);
 
-  cout << time << endl;
-  cout << fmod(time, 0.5) << endl;
   //If the player is alive spawn enemies every time the count increments by 20.
   if(player->isAlive){
     if(fmod(EnemyCount, 40) == 0 ){
@@ -113,7 +111,7 @@ void display() {
     }
   if((fmod(time, 0.5) < 0.002) && (fmod(time, 0.5) > 0.0)){ 
       diffy += 0.01; 
-    }
+    } 
 
  /* if(((float)t/CLOCKS_PER_SEC) < 5){
 	for(auto it : enemies){ it->setDiff(0.15);}}
@@ -148,14 +146,14 @@ void display() {
   enemies.swap(tmpEnemies);
   bullets.swap(tmpBullets);
 
- /* //delete dead enemies
+  //delete dead enemies
   for(auto it : enemies) {
     if(!it->isAlive) {
       it.reset();
     }	
   }
 
-  //deleting "dead" bullets
+  /*//deleting "dead" bullets
   for(auto it : bullets) {
     if(!it->isAlive) {
       it.reset();
