@@ -11,6 +11,8 @@ class Player : public GameAsset {
   Player(float x, float y, float z);
     ~Player();;
 
+  virtual void incScore(int points);
+
   virtual void update();
   virtual void draw();
   virtual void clean();

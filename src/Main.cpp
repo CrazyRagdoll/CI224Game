@@ -109,8 +109,15 @@ void display() {
 
   //Collision detection between the player and enemies.
   for(auto i : enemies) { 
-      if( i->collidesWith(*player)){
-	player->dead();
+    if( i->collidesWith(*player)){
+      player->dead();
+    }
+  }
+
+  //Collision detection between the stars and players
+  for(auto i : stars) {
+    if( i->collidesWith(*player)){
+      player->incScore(50);
     }
   }
 

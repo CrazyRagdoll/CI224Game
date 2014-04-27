@@ -18,9 +18,9 @@ Player::Player(float x, float y, float z) {
   g_vertex_buffer_data = new GLfloat[num_vertices * 3]{
 
   //     x      y     z
-	-0.5, -0.5,  0.5, //F - 0  //base of the triangle player
-	 0.5, -0.5,  0.5, //F - 1
-	 0.0, -0.5, -0.5, //F - 2
+	-0.5, -0.5, -0.5, //F - 0  //base of the triangle player
+	 0.5, -0.5, -0.5, //F - 1
+	 0.0, -0.5,  0.5, //F - 2
 
 	 0.0,  0.0,  0.0, //F - 3  //top point og the triangle player
 	
@@ -70,7 +70,8 @@ Player::~Player() {
 void Player::update() {
   if (isAlive) 
   {
-    score += 10;
+    score += 1;
+    cout << score << endl;
   }
   else
   { 
@@ -87,6 +88,10 @@ void Player::update() {
 
 void Player::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);
+}
+
+void Player::incScore(int points) {
+  score = score + points;
 }
 
 void Player::draw() {

@@ -91,7 +91,7 @@ void display() {
   //Spawning some stars!
   if(player->isAlive){
     if(fmod(StarCount, StarSpawnRate) == 0 ){
-      stars.push_back(shared_ptr<StarAsset> (new StarAsset(player->bbox->getCentre()->getX() + (rand() % 20 - 10), -0.2, 40)));
+      stars.push_back(shared_ptr<StarAsset> (new StarAsset(player->bbox->getCentre()->getX() + (rand() % 20 - 10), -0.3, 40)));
     }
   }    
 
@@ -109,8 +109,15 @@ void display() {
 
   //Collision detection between the player and enemies.
   for(auto i : enemies) { 
-      if( i->collidesWith(*player)){
-	player->dead();
+    if( i->collidesWith(*player)){
+      player->dead();
+    }
+  }
+
+  //Collision detection between the stars and players
+  for(auto i : stars) {
+    if( i->collidesWith(*player)){
+      player->incScore(500);
     }
   }
 
