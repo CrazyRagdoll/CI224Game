@@ -38,6 +38,8 @@ vector<shared_ptr<Bullet>> tmpBullets;
 
 //PLAYING WITH STARS!!! WOOOO
 vector<shared_ptr<StarAsset>> stars;
+int StarCount = 0;
+int StarSpawnRate = rand() % 500 + 200;
 
 //Adding ammo to give to the player
 int Ammo = 1;
@@ -47,8 +49,8 @@ double Diffy = 0.15;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 0;
-int SpawnRate = 50;
-int EnemiesPerSpawn = 8;
+int EnemySpawnRate = 60;
+int EnemiesPerSpawn = 7;
 
 //Clock used in my implementation to help time the game - currently used to increase difficulty as the game plays out
 clock_t t;
@@ -75,8 +77,9 @@ void display() {
   glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   
-  //Increase EnemyCount by 1
+  //Increase EnemyCount & StarCount by 1
   EnemyCount++;
+  StarCount++;
 
   //Calculating the time to deal with difficulty 
   t = clock();
@@ -85,9 +88,16 @@ void display() {
   //Giving the player an extra bullet every 5 seconds
   if((fmod(time, 1.5) < 0.002) && (fmod(time, 2.5) > 0)){ Ammo ++; }
 
+  //Spawning some stars!
+  if(player->isAlive){
+    if(fmod(StarCount, StarSpawnRate) == 0 ){
+      stars.push_back(shared_ptr<StarAsset> (new StarAsset(player->bbox->getCentre()->getX() + (rand() % 20 - 10), -0.3, 40)));
+    }
+  }    
+
   //If the player is alive spawn enemies every time the count increments by 20.
   if(player->isAlive){
-    if(fmod(EnemyCount, SpawnRate) == 0 ){
+    if(fmod(EnemyCount, EnemySpawnRate) == 0 ){
       //get the position of the player to spawn the enemies infront of him but 25 		  blocks back.
       int pos  = int(player->bbox->getCentre()->getX());
       for( int n_2 = 0; n_2 <= EnemiesPerSpawn; n_2++ ){
@@ -270,6 +280,12 @@ int main(int argc, char ** argv) {
 				  Ammo --;
 				}
 			}
+			  break;
+			case SDLK_a:
+				Camera::getInstance().setCamera(camera * Matrix4::rotationY(5.0/180.0));
+			  break;
+			case SDLK_d:
+				Camera::getInstance().setCamera(camera * Matrix4::rotationY(-5.0/180.0));
 			  default:
 			    break;
 			  }
