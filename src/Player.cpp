@@ -90,7 +90,7 @@ void Player::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);
 }
 
-void Player::incScore(int points) {
+void Player::incScore(double points) {
   score = score + points;
 }
 

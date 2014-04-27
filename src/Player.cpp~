@@ -70,7 +70,7 @@ Player::~Player() {
 void Player::update() {
   if (isAlive) 
   {
-    score += 1;
+    score += 0.1;
     cout << score << endl;
   }
   else
@@ -90,7 +90,7 @@ void Player::setInterpolator(shared_ptr<IInterpolator> li) {
   this->li.swap(li);
 }
 
-void Player::incScore(int points) {
+void Player::incScore(double points) {
   score = score + points;
 }
 
