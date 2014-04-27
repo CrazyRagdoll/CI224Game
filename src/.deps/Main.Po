@@ -172,7 +172,7 @@ Main.o: Main.cpp /usr/include/stdc-predef.h /usr/include/GL/glew.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
  Md2Asset.h TriangularPyramidAsset.h IInterpolator.h Player.h CubeAsset.h \
- Enemy.h Bullet.h BallisticInterpolator.h
+ Enemy.h Bullet.h StarAsset.h BallisticInterpolator.h
 
 /usr/include/stdc-predef.h:
 
@@ -671,5 +671,7 @@ CubeAsset.h:
 Enemy.h:
 
 Bullet.h:
+
+StarAsset.h:
 
 BallisticInterpolator.h:

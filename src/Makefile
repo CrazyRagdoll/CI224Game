@@ -95,7 +95,7 @@ am_simplegame_OBJECTS = Main.$(OBJEXT) GameAsset.$(OBJEXT) \
 	BallisticInterpolator.$(OBJEXT) Camera.$(OBJEXT) \
 	BoundingBox.$(OBJEXT) CubeAsset.$(OBJEXT) Player.$(OBJEXT) \
 	MovementInterpolator.$(OBJEXT) Enemy.$(OBJEXT) \
-	Bullet.$(OBJEXT)
+	Bullet.$(OBJEXT) StarAsset.$(OBJEXT)
 simplegame_OBJECTS = $(am_simplegame_OBJECTS)
 simplegame_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
@@ -254,7 +254,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-simplegame_SOURCES = Main.cpp GameAsset.cpp Md2Asset.cpp TriangularPyramidAsset.cpp BallisticInterpolator.cpp Camera.cpp BoundingBox.cpp CubeAsset.cpp Player.cpp MovementInterpolator.cpp Enemy.cpp Bullet.cpp
+simplegame_SOURCES = Main.cpp GameAsset.cpp Md2Asset.cpp TriangularPyramidAsset.cpp BallisticInterpolator.cpp Camera.cpp BoundingBox.cpp CubeAsset.cpp Player.cpp MovementInterpolator.cpp Enemy.cpp Bullet.cpp StarAsset.cpp
 AM_CPPFLAGS = -I../include/ -std=c++0x $(gl_CFLAGS) $(glew_CFLAGS) \
 	$(sdl_CFLAGS)
 all: all-am
@@ -355,6 +355,7 @@ include ./$(DEPDIR)/Main.Po
 include ./$(DEPDIR)/Md2Asset.Po
 include ./$(DEPDIR)/MovementInterpolator.Po
 include ./$(DEPDIR)/Player.Po
+include ./$(DEPDIR)/StarAsset.Po
 include ./$(DEPDIR)/TriangularPyramidAsset.Po
 
 .cpp.o:

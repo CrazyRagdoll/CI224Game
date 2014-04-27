@@ -16,6 +16,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
+#include "StarAsset.h"
 #include "BallisticInterpolator.h"
 #include "Camera.h"
 
@@ -35,6 +36,9 @@ vector<shared_ptr<Enemy>> tmpEnemies;
 vector<shared_ptr<Bullet>> bullets;
 vector<shared_ptr<Bullet>> tmpBullets;
 
+//PLAYING WITH STARS!!! WOOOO
+vector<shared_ptr<StarAsset>> stars;
+
 //Adding ammo to give to the player
 int Ammo = 1;
 
@@ -48,9 +52,6 @@ int EnemiesPerSpawn = 8;
 
 //Clock used in my implementation to help time the game - currently used to increase difficulty as the game plays out
 clock_t t;
-
-//Using this variable as a bullet implementation
-bool horrible_global_go = false;
 
 SDL_Window * window = nullptr;
 
@@ -130,6 +131,7 @@ void display() {
   //for(auto it : assets)  { it->update(); } 
   for(auto it : enemies) { it->update(); }
   for(auto it : bullets) { it->update(); }
+  for(auto it : stars)   { it->update(); }
   player->update();
 
   //adding the enmies to the temp list + bullets
@@ -139,6 +141,7 @@ void display() {
   //for(auto it : assets)  { it->draw(); } 
   for(auto it : enemies) { it->draw(); }
   for(auto it : bullets) { it->draw(); }
+  for(auto it : stars)   { it->draw(); }
   player->draw();
 
   //swapping the enemies list with the alive enemies + bullets
@@ -184,7 +187,7 @@ int main(int argc, char ** argv) {
 	atexit(SDL_Quit);
 
 	// Create a new window with an OpenGL surface
-	window = SDL_CreateWindow("CI224 - Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("CI224 - Game ~~ CubeRunner LITE!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
 	if (nullptr == window) {
 		cout << "Failed to create SDL window: " << SDL_GetError() << endl;
 		SDL_Quit();
@@ -203,6 +206,9 @@ int main(int argc, char ** argv) {
 	  cerr<< "OpenGL 2.0 not available" << endl;
 	  return 1;
 	}
+
+	//Adding a MOTHER FUCKING STAR
+	stars.push_back(shared_ptr<StarAsset> (new StarAsset(0, 2, 0)));	
 
 	//Adding the players coordinates into the game
 	player = shared_ptr<Player> (new Player(0, 0, 0));
