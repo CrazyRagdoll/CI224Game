@@ -3,13 +3,17 @@
 Enemy::Enemy() 
   : GameAsset(
 	      string("shaders/hello-gl.v.glsl")
-	      , string("shaders/hello-gl.f.glsl")
+	      , string("shaders/enemy-gl.f.glsl")
 	      )
 {
   Enemy(0, 0, 0);
 }
 
-Enemy::Enemy(float x, float y, float z) {
+Enemy::Enemy(float x, float y, float z)
+  : GameAsset(
+      string("shaders/hello-gl.v.glsl"), 
+      string("shaders/enemy-gl.f.glsl")
+) {
 
   // A default "unit" cube
   num_vertices = 8;
@@ -81,7 +85,6 @@ void Enemy::update() {
     if( this->bbox->getCentre()->getZ() < -5) { this->dead(); }
 
   }
-  //else{ };
 }
 
 bool Enemy::collidesWith(Player & a) {

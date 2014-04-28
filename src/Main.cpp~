@@ -23,6 +23,9 @@ using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00;
 
+//Is the game running?
+bool running = true;
+
 //Adding the player to the game
 shared_ptr<Player> player ;
 
@@ -41,16 +44,13 @@ vector<shared_ptr<StarAsset>> tmpStars;
 int StarCount = 0;
 int StarSpawnRate = rand() % 500 + rand () % 200 + 100;
 
-//Adding ammo to give to the player
-int Ammo = 1;
-
 //Global variable to hold the "difficulty" of the game
 double Diffy = 0.15;
 
 //Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 0;
 int EnemySpawnRate = 40;
-int EnemiesPerSpawn = 15;
+int EnemiesPerSpawn = 8;
 
 //Clock used in my implementation to help time the game - currently used to increase difficulty as the game plays out
 clock_t t;
@@ -74,7 +74,10 @@ Uint32 display(Uint32 interval, void *param) {
 }
 
 void display() {
-  glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
+  
+  if(!player->isAlive){ running = false; SDL_Quit(); }
+
+  glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   
   //Increase EnemyCount & StarCount by 1
@@ -83,10 +86,12 @@ void display() {
 
   //Calculating the time to deal with difficulty 
   t = clock();
-  double time = ((float)t/CLOCKS_PER_SEC);
-
+  double time = ((float)t/CLOCKS_PER_SEC) * 1.5;
+	
   //Giving the player an extra bullet every 5 seconds
-  if((fmod(time, 1.5) < 0.002) && (fmod(time, 2.5) > 0)){ Ammo ++; }
+  if((fmod(time, player->getAmmoRate()) < 0.002) && (fmod(time, 2.5) > 0)){ 
+    player->changeAmmo(1); 
+  }
 
   //Spawning some stars!
   if(player->isAlive){
@@ -230,57 +235,64 @@ int main(int argc, char ** argv) {
 	// Add the main event loop
 	SDL_Event event;
 
-	bool running = true;
 	while (running) {
+	  while (SDL_PollEvent(&event)) {
+	    switch (event.type) {
 
-	while (SDL_PollEvent(&event)) {
-			switch (event.type) {
-			case SDL_QUIT:
-			  SDL_Quit();
-			  break;
-			case SDL_USEREVENT:
-			  display();
-			  break;
-			case SDL_KEYUP:
-			  //			  Camera::getInstance().setCamera(Matrix4::identity());
-			  break;
-			case SDL_KEYDOWN:
-			  Matrix4 camera = Camera::getInstance().getCameraM();
-			  switch(event.key.keysym.sym){
-			case SDLK_UP:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, -5.0)));
-			    break; 
-			  case SDLK_DOWN:
-				running =false;
-			    //Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, 5.0))); 
-			    break;
-			  case SDLK_LEFT:
-			{
-				//Introducing similtanious player and camera movement.
-				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.5, 0.0, 0.0)) ); 
-				player->moveLeft();
-			}		 
-			    break;
-			  case SDLK_RIGHT:
-			{
-				//Introducing similtanious player and camera movement.
-			    	Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-0.5, 0.0, 0.0)) );
-				player->moveRight();
-			}	
-			    break;
-			  case SDLK_SPACE:
-				//Adding player controlled bullets into the game.
-			{
-				if(Ammo >= 1){		
-				  bullets.push_back(shared_ptr<Bullet> (new Bullet(double(player->bbox->getCentre()->getX()),0,0)));
-				  Ammo --;
-				}
-			}
-			  default:
-			    break;
-			  }
-			  break;
-			}
+	      case SDL_QUIT:
+		running = false;
+		SDL_Quit();
+		break;
+
+	      case SDL_USEREVENT:
+		display();
+		break;
+
+	      case SDL_KEYDOWN:
+		Matrix4 camera = Camera::getInstance().getCameraM();
+	      
+	      switch(event.key.keysym.sym){
+		case SDLK_UP:
+		  //Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, -5.0)));
+		  break; 
+
+		case SDLK_DOWN:
+		  //Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, 5.0))); 
+		  break;
+
+		case SDLK_ESCAPE:
+		  SDL_Quit();
+		  running = false;
+		  break;
+		
+		case SDLK_LEFT:
+		{
+		  //Introducing similtanious player and camera movement.
+		  Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.5, 0.0, 0.0)) ); 
+		  player->move(-0.5);
+	 	}		 
+		break;
+			  
+		case SDLK_RIGHT:
+		{ //Introducing similtanious player and camera movement.
+		  Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-0.5, 0.0, 0.0)) );
+		  player->move(0.5);
+		}	
+		break;
+
+		case SDLK_SPACE:
+		{ //Adding player controlled bullets into the game.
+		  if(player->Ammo >= 1)
+		  {		
+		    bullets.push_back(shared_ptr<Bullet> (new Bullet(double(player->bbox->getCentre()->getX()),0,0)));
+		    player->changeAmmo(-1);
+		  }
+		}
+		default:
+		break;
+		}
+		break;
+		}
 		}
 	SDL_Delay(16);	
 	display();

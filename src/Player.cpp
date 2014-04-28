@@ -47,7 +47,7 @@ void Player::update() {
   if (isAlive) 
   {
     score += 0.1;
-    cout << score << endl;
+    //cout << score << endl;
   }
   else
   { 
@@ -58,16 +58,22 @@ void Player::update() {
   }
 }
 
-void Player::moveLeft(){
-  shared_ptr<Point3> mLeft = this->bbox->getCentre();
-  *mLeft = Point3(mLeft->getX() - 0.5, 0.0, 0.0);
-  mLeft.reset();
+double Player::getAmmo(){
+  return Ammo;
 }
 
-void Player::moveRight(){
-  shared_ptr<Point3> mRight = this->bbox->getCentre();
-  *mRight = Point3(mRight->getX() + 0.5, 0.0, 0.0);
-  mRight.reset();
+double Player::getAmmoRate(){
+  return ammoRespawn;
+}
+
+void Player::changeAmmo(int ammoVal){
+  Ammo = Ammo + ammoVal;
+}
+
+void Player::move(double moving){
+  shared_ptr<Point3> move = this->bbox->getCentre();
+  *move = Point3(move->getX() + moving, 0.0, 0.0);
+  move.reset();
 }
 
 void Player::incScore(double points) {
