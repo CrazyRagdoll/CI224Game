@@ -21,13 +21,8 @@ Player::Player(float x, float y, float z) {
 	-0.5, -0.5, -0.5, //F - 0  //base of the triangle player
 	 0.5, -0.5, -0.5, //F - 1
 	 0.0, -0.5,  0.5, //F - 2
-
 	 0.0,  0.0,  0.0, //F - 3  //top point og the triangle player
 	
-	/*-0.5, -0.5, -0.5, //B - 4
-	 0.5, -0.5, -0.5, //B - 5
-	-0.5,  0.5, -0.5, //B - 6
-	 0.5,  0.5, -0.5  //B - 7 */
 }; // three points per vertex
 
   g_element_buffer_data = new GLushort[num_triangles * 3]{
@@ -36,24 +31,6 @@ Player::Player(float x, float y, float z) {
 	F0, F1, F3,   //Back
 	F1, F2, F3,   //RightSide
 	F2, F0, F0    //LeftSide
-
-/*	F0, F1, F2,  //front
-	F1, F3, F2,
-
-	F1, B5, F3,  //right
-	B5, B7, F3,
-
-	B5, B4, B7,  //back
-	B4, B6, B7,
-
-	B4, F0, B6,  //left
-	F0, F2, B6,
-
-	F2, F3, B6,  //top
-	F3, B7, B6,
-
-	B4, B5, F0,  //bottom
-	B5, F1, F0		*/
 	
 }; // three vertices per triangle
 
@@ -82,12 +59,16 @@ void Player::update() {
   }
 }
 
-//bool GameAsset::collidesWith(Enemy & a) {
-//  return bbox->collidesWith((*a.bbox));
-//}
+void Player::moveLeft(){
+  shared_ptr<Point3> mLeft = this->bbox->getCentre();
+  *mLeft = Point3(mLeft->getX() - 0.5, 0.0, 0.0);
+  mLeft.reset();
+}
 
-void Player::setInterpolator(shared_ptr<IInterpolator> li) {
-  this->li.swap(li);
+void Player::moveRight(){
+  shared_ptr<Point3> mRight = this->bbox->getCentre();
+  *mRight = Point3(mRight->getX() + 0.5, 0.0, 0.0);
+  mRight.reset();
 }
 
 void Player::incScore(double points) {
@@ -95,7 +76,6 @@ void Player::incScore(double points) {
 }
 
 void Player::draw() {
-//  std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
   GameAsset::draw();
 }
 

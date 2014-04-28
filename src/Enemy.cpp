@@ -79,8 +79,7 @@ void Enemy::update() {
 
     this->bbox.reset();
     this->bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
-    if( this->bbox->getCentre()->getZ() < -10) { this->dead(); }
-    //cout << difficulty << endl;
+    if( this->bbox->getCentre()->getZ() < -5) { this->dead(); }
 
   }
   //else{ };
@@ -88,10 +87,6 @@ void Enemy::update() {
 
 bool Enemy::collidesWith(Player & a) {
   return bbox->collidesWith((*a.bbox));
-}
-
-void Enemy::setInterpolator(shared_ptr<IInterpolator> li) {
-  this->li.swap(li);
 }
 
 void Enemy::draw() {

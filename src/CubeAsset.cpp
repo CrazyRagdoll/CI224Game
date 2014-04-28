@@ -70,10 +70,6 @@ void CubeAsset::update() {
   }
 }
 
-void CubeAsset::setInterpolator(shared_ptr<IInterpolator> li) {
-  this->li.swap(li);
-}
-
 void CubeAsset::draw() {
 //  std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
   GameAsset::draw();

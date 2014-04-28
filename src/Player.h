@@ -1,5 +1,4 @@
 #include "CubeAsset.h"
-#include "IInterpolator.h"
 #include <SDL2/SDL.h>
 
 #ifndef PLAYER_H_
@@ -11,19 +10,22 @@ class Player : public GameAsset {
   Player(float x, float y, float z);
     ~Player();;
 
+  //Score
   virtual void incScore(double points);
+
+  //Movement
+  virtual void moveLeft();
+  virtual void moveRight();
 
   virtual void update();
   virtual void draw();
   virtual void clean();
-  void setInterpolator(shared_ptr<IInterpolator> li);
 
   enum vertices {
-	F0, F1, F2, F3, B4, B5, B6, B7,
+	F0, F1, F2, F3, 
   };
  
   private:
-  shared_ptr<IInterpolator> li;
   double score = 0;
 
 };

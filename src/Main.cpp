@@ -17,7 +17,6 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "StarAsset.h"
-#include "BallisticInterpolator.h"
 #include "Camera.h"
 
 using namespace std;
@@ -93,7 +92,7 @@ void display() {
   if(player->isAlive){
     if(fmod(StarCount, StarSpawnRate) == 0 ){
       int rnd = rand() % 20 - 10;
-      stars.push_back(shared_ptr<StarAsset> (new StarAsset(player->bbox->getCentre()->getX() + rnd, -0.3, 40)));
+      stars.push_back(shared_ptr<StarAsset> (new StarAsset(player->bbox->getCentre()->getX() + rnd, -0.3, 50)));
     }
   }    
 
@@ -146,9 +145,6 @@ void display() {
   tmpEnemies.clear();
   tmpBullets.clear();
   tmpStars.clear();
-
-  // This O(n + n^2 + n) sequence of loops is written for clarity,
-  // not efficiency
   
   //Updating the assets
   for(auto it : enemies) { it->update(); }
@@ -172,6 +168,9 @@ void display() {
   bullets.swap(tmpBullets);
   stars.swap(tmpStars);
   
+  //Clearing dead enemies
+  for(auto it : enemies) { if(!it->isAlive) { it.reset(); }}
+
   // Don't forget to swap the buffers
   SDL_GL_SwapWindow(window);
 }
@@ -254,16 +253,14 @@ int main(int argc, char ** argv) {
 			{
 				//Introducing similtanious player and camera movement.
 				Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.5, 0.0, 0.0)) ); 
-				shared_ptr<Point3> mLeft = player->bbox->getCentre();
-				*mLeft = Point3(mLeft->getX() - 0.5, 0.0, 0.0);
+				player->moveLeft();
 			}		 
 			    break;
 			  case SDLK_RIGHT:
 			{
 				//Introducing similtanious player and camera movement.
 			    	Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(-0.5, 0.0, 0.0)) );
-				shared_ptr<Point3> mRight = player->bbox->getCentre();
-				*mRight = Point3(mRight->getX() + 0.5, 0.0, 0.0);
+				player->moveRight();
 			}	
 			    break;
 			  case SDLK_SPACE:
@@ -274,16 +271,10 @@ int main(int argc, char ** argv) {
 				  Ammo --;
 				}
 			}
-			  break;
-			case SDLK_a:
-				Camera::getInstance().setCamera(camera * Matrix4::rotationY(5.0/180.0));
-			  break;
-			case SDLK_d:
-				Camera::getInstance().setCamera(camera * Matrix4::rotationY(-5.0/180.0));
 			  default:
 			    break;
 			  }
 			  break;
 			}
 	}
-}
+} //NatsuSt
