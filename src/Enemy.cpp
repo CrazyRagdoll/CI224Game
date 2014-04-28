@@ -10,7 +10,6 @@ Enemy::Enemy()
 }
 
 Enemy::Enemy(float x, float y, float z) {
-  this->li = nullptr;
 
   // A default "unit" cube
   num_vertices = 8;

@@ -10,7 +10,6 @@ CubeAsset::CubeAsset()
 }
 
 CubeAsset::CubeAsset(float x, float y, float z) {
-  this->li = nullptr;
 
   // A default "unit" cube
   num_vertices = 8;
@@ -61,13 +60,6 @@ CubeAsset::~CubeAsset() {
 }
 
 void CubeAsset::update() {
-  if (nullptr != li) {
-    //    std::cout << "x: " << bbox->getCentre()->getX() << "\ty: " << bbox->getCentre()->getY() << "\tz:" << bbox->getCentre()->getZ() << std::endl;
-    shared_ptr<Point3> p = shared_ptr<Point3>(new Point3(this->li->update()));
-
-    bbox.reset();
-    bbox = shared_ptr<BoundingBox>(new BoundingBox(*p, 1.0, 1.0, 1.0));
-  }
 }
 
 void CubeAsset::draw() {

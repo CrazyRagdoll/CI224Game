@@ -135,8 +135,7 @@ CubeAsset.o: CubeAsset.cpp /usr/include/stdc-predef.h CubeAsset.h \
  /usr/include/x86_64-linux-gnu/bits/mathinline.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
- ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
- IInterpolator.h
+ ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h
 
 /usr/include/stdc-predef.h:
 
@@ -493,5 +492,3 @@ GameAsset.h:
 Camera.h:
 
 BoundingBox.h:
-
-IInterpolator.h:

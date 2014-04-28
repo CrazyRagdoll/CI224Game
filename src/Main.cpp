@@ -50,7 +50,7 @@ double Diffy = 0.15;
 //Crude Enemy counter to help regulate enemy spawn rates.
 int EnemyCount = 0;
 int EnemySpawnRate = 40;
-int EnemiesPerSpawn = 7;
+int EnemiesPerSpawn = 8;
 
 //Clock used in my implementation to help time the game - currently used to increase difficulty as the game plays out
 clock_t t;
@@ -225,11 +225,15 @@ int main(int argc, char ** argv) {
 	//Camera::getInstance().setCamera(Matrix4::identity());
 
 	// Call the function "display" every delay milliseconds
-	SDL_AddTimer(delay, display, NULL);
+	//SDL_AddTimer(delay, display, NULL);
 
 	// Add the main event loop
 	SDL_Event event;
-	while (SDL_WaitEvent(&event)) {
+
+	bool running = true;
+	while (running) {
+
+	while (SDL_PollEvent(&event)) {
 			switch (event.type) {
 			case SDL_QUIT:
 			  SDL_Quit();
@@ -247,7 +251,8 @@ int main(int argc, char ** argv) {
 			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, -5.0)));
 			    break; 
 			  case SDLK_DOWN:
-			    Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, 5.0))); 
+				running =false;
+			    //Camera::getInstance().setCamera(camera * Matrix4::translation(Vector3(0.0, 0.0, 5.0))); 
 			    break;
 			  case SDLK_LEFT:
 			{
@@ -276,5 +281,8 @@ int main(int argc, char ** argv) {
 			  }
 			  break;
 			}
-	}
+		}
+	SDL_Delay(16);	
+	display();
+}
 } //NatsuSt

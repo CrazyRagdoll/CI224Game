@@ -71,10 +71,6 @@ void Player::moveRight(){
   mRight.reset();
 }
 
-void Player::setInterpolator(shared_ptr<IInterpolator> li) {
-  this->li.swap(li);
-}
-
 void Player::incScore(double points) {
   score = score + points;
 }

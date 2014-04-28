@@ -136,7 +136,7 @@ Player.o: Player.cpp /usr/include/stdc-predef.h Player.h CubeAsset.h \
  ../include/vectormath/scalar/cpp/vec_aos.h \
  ../include/vectormath/scalar/cpp/quat_aos.h \
  ../include/vectormath/scalar/cpp/mat_aos.h Camera.h BoundingBox.h \
- IInterpolator.h /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
+ /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
  /usr/include/SDL2/close_code.h /usr/include/string.h \
@@ -522,8 +522,6 @@ GameAsset.h:
 Camera.h:
 
 BoundingBox.h:
-
-IInterpolator.h:
 
 /usr/include/SDL2/SDL.h:
 
